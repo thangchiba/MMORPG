@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +6,11 @@ using UnityEngine.AI;
 
 public class PlayerMove : MonoBehaviour
 {
-    Transform target;
-    [SerializeField] Camera camera;
+    [SerializeField] Camera mainCamera;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Target").transform;
+        Application.targetFrameRate = 60;
     }
 
     Ray lastRay;
@@ -22,19 +21,29 @@ public class PlayerMove : MonoBehaviour
         {
             MoveToClickedPoint();
         }
+        UpdateAnimator();
     }
 
     private void MoveToClickedPoint()
     {
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.point);
+            GetComponent<NavMeshAgent>().destination = hit.point;
         }
-        GetComponent<NavMeshAgent>().destination = hit.point;
-        Debug.Log(hit.collider.name);
-        //draw ray from camera to clicked point
-        Debug.DrawRay(lastRay.origin, lastRay.direction * 5000);
+    }
+
+    private void UpdateAnimator()
+    {
+        //Grabbing global coordinates move speed
+        Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+        //Calc local move speed by global
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        //Local move speed
+        float moveSpeed = localVelocity.z;
+        //Set Animator move speed
+        GetComponent<Animator>().SetFloat("moveSpeed", moveSpeed,0.05f,Time.deltaTime);
+        Debug.Log(moveSpeed);
     }
 }
