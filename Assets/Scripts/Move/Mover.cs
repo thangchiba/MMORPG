@@ -8,13 +8,23 @@ namespace MMORPG.Move
 {
     public class Mover : MonoBehaviour
     {
+        NavMeshAgent nav;
+        private void Start()
+        {
+            nav = GetComponent<NavMeshAgent>();
+        }
         void Update()
         {
             UpdateAnimator();
         }
         public void MoveToPoint(Vector3 point)
         {
-            GetComponent<NavMeshAgent>().destination = point;
+            nav.isStopped = false;
+            nav.destination = point;
+        }
+        public void StopMove()
+        {
+            nav.isStopped = true;
         }
         private void UpdateAnimator()
         {

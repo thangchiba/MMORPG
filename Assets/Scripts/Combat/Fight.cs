@@ -8,47 +8,60 @@ namespace MMORPG.Combat
 {
     public class Fight : MonoBehaviour
     {
-        [SerializeField] float attackRange = 3f;
+        [SerializeField] int attackRange = 5;
+        [SerializeField] int attackSpeed = 100;
+        [SerializeField] int huntRange = 30;
         GameObject target;
-        bool attackMode = false;
         bool isAttacking = false;
-        bool isChasing = false;
+        Mover mover;
+        private void Start()
+        {
+            mover = GetComponent<Mover>();
+        }
+
         public void SetTarget(GameObject target)
         {
-            GetComponent<NavMeshAgent>().stoppingDistance = attackRange;
-            attackMode = false;
             this.target = target;
-            if (target.tag == "Enemy" || target.tag == "Minion")
+        }
+
+        private void Update()
+        {
+            if (target == null) return;
+            bool isInRangeAttack = Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) < attackRange;
+            if (isInRangeAttack)
             {
-                attackMode = true;
-                StartCoroutine("Attack");
+                mover.StopMove();
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+                    StartCoroutine("Attack");
+                }
+            }
+            else if(Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) > huntRange)
+            {
+                CancelAttack();
+                target = null;
+            }
+            else
+            {
+                CancelAttack();
+                mover.MoveToPoint(target.gameObject.transform.position);
             }
         }
 
         IEnumerator Attack()
         {
-            while (attackMode)
+            while (isAttacking)
             {
-                if (Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) < attackRange)
-                {
-                    isAttacking = true;
-                    isChasing = false;
-                    Debug.Log("Attacking" + Time.time);
-                }
-                else
-                {
-                    isAttacking = false;
-                    ChaseTarget();
-                }
-                yield return new WaitForSeconds(1);
+                Debug.Log("Attacking" + Time.time);
+                yield return new WaitForSeconds(100 / attackSpeed);
             }
         }
 
-        private void ChaseTarget()
+        private void CancelAttack()
         {
-            if (!isChasing)
-                GetComponent<Mover>().MoveToPoint(target.gameObject.transform.position);
-            isChasing = true;
+            isAttacking = false;
+            StopCoroutine("Attack");
         }
     }
 }

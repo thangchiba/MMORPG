@@ -8,16 +8,14 @@ using MMORPG.Combat;
 
 namespace MMORPG.Control
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerControl : MonoBehaviour
     {
         [SerializeField] Camera mainCamera;
-        // Start is called before the first frame update
         void Awake()
         {
             Application.targetFrameRate = 60;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -33,8 +31,11 @@ namespace MMORPG.Control
             if (Physics.Raycast(ray, out hit))
             {
                 GetComponent<Mover>().MoveToPoint(hit.point);
-                GameObject hitObject = hit.collider.gameObject;
-                GetComponent<Fight>().SetTarget(hitObject);
+                String hitObjectTag = hit.collider.gameObject.tag;
+                if (hitObjectTag == "Enemy" || hitObjectTag == "Minion")
+                {
+                    GetComponent<Fight>().SetTarget(hit.collider.gameObject);
+                }
             }
         }
     }
