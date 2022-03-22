@@ -363,19 +363,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1831179794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831179782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c7dd98f37414c76a51718092a9ebeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 5
 --- !u!114 &1831179796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,10 +384,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1831179782}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54da1001be301416fb1665ff32011b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1831179801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831179782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c7dd98f37414c76a51718092a9ebeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 5
+--- !u!114 &1831179802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831179782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4819cc607ab854330af9e14425014902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
 --- !u!1001 &4559438745567648036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440122, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_Speed
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440122, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_Radius
@@ -636,11 +647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440122, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_Acceleration
-      value: 5
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440122, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_AngularSpeed
-      value: 10000
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440122, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_StoppingDistance
@@ -700,4 +711,5 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     m_RemovedComponents:
     - {fileID: 8816310732493440125, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
+    - {fileID: 7166911033954340040, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}

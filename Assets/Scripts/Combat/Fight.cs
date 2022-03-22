@@ -1,67 +1,49 @@
-using System;
-using System.Collections;
-using MMORPG.Move;
 using UnityEngine;
-using UnityEngine.AI;
+using MMORPG.Movement;
+using MMORPG.Core;
+using System;
 
 namespace MMORPG.Combat
 {
-    public class Fight : MonoBehaviour
+    public class Fight : MonoBehaviour, IAction
     {
-        [SerializeField] int attackRange = 5;
-        [SerializeField] int attackSpeed = 100;
-        [SerializeField] int huntRange = 30;
-        GameObject target;
-        bool isAttacking = false;
-        Mover mover;
-        private void Start()
-        {
-            mover = GetComponent<Mover>();
-        }
+        [SerializeField] float weaponRange = 5f;
 
-        public void SetTarget(GameObject target)
-        {
-            this.target = target;
-        }
+        Transform target;
 
         private void Update()
         {
             if (target == null) return;
-            bool isInRangeAttack = Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) < attackRange;
-            if (isInRangeAttack)
+
+            if (!GetIsInRange())
             {
-                mover.StopMove();
-                if (!isAttacking)
-                {
-                    isAttacking = true;
-                    StartCoroutine("Attack");
-                }
-            }
-            else if(Vector3.Distance(target.gameObject.transform.position, gameObject.transform.position) > huntRange)
-            {
-                CancelAttack();
-                target = null;
+                GetComponent<Mover>().MoveTo(target.position);
             }
             else
             {
-                CancelAttack();
-                mover.MoveToPoint(target.gameObject.transform.position);
+                GetComponent<Mover>().Cancel();
+                GetComponent<Animator>().SetTrigger("attack");
             }
         }
 
-        IEnumerator Attack()
+        private bool GetIsInRange()
         {
-            while (isAttacking)
-            {
-                Debug.Log("Attacking" + Time.time);
-                yield return new WaitForSeconds(100 / attackSpeed);
-            }
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
         }
 
-        private void CancelAttack()
+        public void Attack(CombatTarget combatTarget)
         {
-            isAttacking = false;
-            StopCoroutine("Attack");
+            GetComponent<ActionScheduler>().StartAction(this);
+            target = combatTarget.transform;
+        }
+
+        private void AttackBehaviour()
+        {
+        }
+
+        public void Cancel()
+        {
+            target = null;
         }
     }
 }
