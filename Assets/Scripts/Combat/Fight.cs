@@ -9,6 +9,7 @@ namespace MMORPG.Combat
     {
         [SerializeField] float attackRange = 3f;
         [SerializeField][Range(50, 150)] float attackSpeed = 50f;
+        [SerializeField] float attackDamage = 5f;
         Animator animator;
         Transform target;
 
@@ -44,8 +45,14 @@ namespace MMORPG.Combat
 
         private void AttackBehaviour()
         {
+            gameObject.transform.LookAt(target);
             animator.SetTrigger("attack");
             animator.SetFloat("attackSpeed", attackSpeed / 100);
+        }
+
+        public void Damage()
+        {
+            target.GetComponent<Health>().TakeDamage(attackDamage);
         }
 
         public void Cancel()
