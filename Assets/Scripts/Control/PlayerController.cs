@@ -10,6 +10,10 @@ namespace MMORPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        private void Awake()
+        {
+            Application.targetFrameRate = 70;
+        }
 
         private void Update()
         {

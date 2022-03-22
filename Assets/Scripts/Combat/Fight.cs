@@ -7,10 +7,15 @@ namespace MMORPG.Combat
 {
     public class Fight : MonoBehaviour, IAction
     {
-        [SerializeField] float weaponRange = 5f;
-
+        [SerializeField] float attackRange = 3f;
+        [SerializeField][Range(50,150)] float attackSpeed = 50f;
+        Animator animator;
         Transform target;
 
+        void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
         private void Update()
         {
             if (target == null) return;
@@ -22,13 +27,13 @@ namespace MMORPG.Combat
             else
             {
                 GetComponent<Mover>().Cancel();
-                GetComponent<Animator>().SetTrigger("attack");
+                AttackBehaviour();
             }
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.position) < attackRange;
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -39,11 +44,15 @@ namespace MMORPG.Combat
 
         private void AttackBehaviour()
         {
+            animator.SetTrigger("attack");
+            animator.SetFloat("attackSpeed", attackSpeed/100);
         }
 
         public void Cancel()
         {
             target = null;
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
     }
 }
