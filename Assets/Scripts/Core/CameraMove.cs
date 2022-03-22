@@ -20,6 +20,7 @@ namespace MMORPG.Core
 
         private void MoveFollowPlayer()
         {
+            //Camera will follow player without rotation
             gameObject.transform.position = player.transform.position;
         }
     }

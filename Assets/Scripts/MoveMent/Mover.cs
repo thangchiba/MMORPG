@@ -29,12 +29,15 @@ namespace MMORPG.Movement
             MoveTo(destination);
         }
 
+        //Move to a point
         public void MoveTo(Vector3 destination)
         {
+            //Set target that object will chase
             navMeshAgent.destination = destination;
             navMeshAgent.isStopped = false;
         }
 
+        //Cancel chase
         public void Cancel()
         {
             navMeshAgent.isStopped = true;
@@ -42,10 +45,14 @@ namespace MMORPG.Movement
 
         private void UpdateAnimator()
         {
+            //Get moving speed with global velocity
             Vector3 velocity = navMeshAgent.velocity;
+            //Get moving speed compare with global velocity
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+            //Get forward speed
             float speed = localVelocity.z;
-            GetComponent<Animator>().SetFloat("moveSpeed", speed);
+            //Set forward speed to BlendTree
+            GetComponentInChildren<Animator>().SetFloat("moveSpeed", speed);
         }
     }
 }

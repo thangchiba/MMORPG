@@ -8,13 +8,13 @@ namespace MMORPG.Combat
     public class Fight : MonoBehaviour, IAction
     {
         [SerializeField] float attackRange = 3f;
-        [SerializeField][Range(50,150)] float attackSpeed = 50f;
+        [SerializeField][Range(50, 150)] float attackSpeed = 50f;
         Animator animator;
         Transform target;
 
         void Start()
         {
-            animator = GetComponent<Animator>();
+            animator = gameObject.GetComponentInChildren<Animator>();
         }
         private void Update()
         {
@@ -45,7 +45,7 @@ namespace MMORPG.Combat
         private void AttackBehaviour()
         {
             animator.SetTrigger("attack");
-            animator.SetFloat("attackSpeed", attackSpeed/100);
+            animator.SetFloat("attackSpeed", attackSpeed / 100);
         }
 
         public void Cancel()

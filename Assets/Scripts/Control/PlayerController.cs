@@ -23,6 +23,7 @@ namespace MMORPG.Control
 
         private bool InteractWithCombat()
         {
+            //Get all object hitted on straight line 
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
@@ -53,6 +54,7 @@ namespace MMORPG.Control
             return false;
         }
 
+        //straight line come from center of camera to mouse clicked point
         private static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);

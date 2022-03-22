@@ -6,6 +6,10 @@ namespace MMORPG.Core
     {
         IAction currentAction;
 
+        /// <summary>
+        /// Dependence Injection, An action when excute will cancel previous action
+        /// </summary>
+        /// <param name="action"></param>
         public void StartAction(IAction action)
         {
             if (currentAction == action) return;
