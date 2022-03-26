@@ -11,24 +11,21 @@ namespace MMORPG.Combat
     public class ArtificialIntelligence : MonoBehaviour
     {
         [SerializeField] float chaseRange = 5f;
-        Vector3 guardingPosition;
         CombatTarget player;
         Fight fight;
-        Mover mover;
+        Patrol patrol;
         private void Start()
         {
-            //Set default guarding position is initialized position
-            guardingPosition = transform.position;
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
             fight = GetComponent<Fight>();
-            mover = GetComponent<Mover>();
+            patrol = GetComponentInParent<Patrol>();
         }
         private void Update()
         {
             if (!InChaseRange())
             {
-                //Cancel Fight and Move back to guarding position
-                mover.StartMoveAction(guardingPosition);
+                //Cancel Fight and Move back to patrol
+                patrol.StartPatrolAction();
                 return;
             }
             fight.Attack(player);
@@ -40,12 +37,13 @@ namespace MMORPG.Combat
             return distance < chaseRange;
         }
 
+        //Caculating range from player to minion
         float CalcRange()
         {
             return Vector3.Distance(player.transform.position, transform.position);
         }
 
-        //Unity draw gizmos
+        //Unity draw chase range gizmos
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
