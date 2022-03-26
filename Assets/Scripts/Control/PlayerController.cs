@@ -30,7 +30,7 @@ namespace MMORPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
+                if (target == null || target.tag == "Player") continue;
 
                 if (Input.GetMouseButtonDown(0))
                 {

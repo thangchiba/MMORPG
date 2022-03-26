@@ -9,7 +9,7 @@ namespace MMORPG.Combat
 {
     public class ArtificialIntelligence : MonoBehaviour
     {
-        [SerializeField] float chaseRange = 10f;
+        [SerializeField] float chaseRange = 5f;
         CombatTarget player;
         Fight fight;
         private void Start()
@@ -36,6 +36,14 @@ namespace MMORPG.Combat
         float CalcRange()
         {
             return Vector3.Distance(player.transform.position, transform.position);
+        }
+
+        //Unity draw gizmos
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            //ChaseRange draw
+            Gizmos.DrawWireSphere(transform.position, chaseRange);
         }
     }
 }
