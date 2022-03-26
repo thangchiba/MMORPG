@@ -12,10 +12,13 @@ namespace MMORPG.Combat
         [SerializeField] float attackDamage = 5f;
         Animator animator;
         CombatTarget target;
-
+        Mover mover;
+        ActionScheduler actionScheduler;
         void Start()
         {
-            animator = gameObject.GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<Animator>();
+            mover = GetComponent<Mover>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
         private void Update()
         {
@@ -23,12 +26,12 @@ namespace MMORPG.Combat
             if (target.isDead) { Cancel(); return; }
             if (!GetIsInRange())
             {
-                GetComponent<Mover>().MoveTo(target.transform.position);
+                mover.MoveTo(target.transform.position);
                 InterruptAttack();
             }
             else
             {
-                GetComponent<Mover>().Cancel();
+                mover.Cancel();
                 AttackBehaviour();
             }
         }
@@ -40,7 +43,7 @@ namespace MMORPG.Combat
 
         public void Attack(CombatTarget combatTarget)
         {
-            GetComponent<ActionScheduler>().StartAction(this);
+            actionScheduler.StartAction(this);
             target = combatTarget;
         }
 

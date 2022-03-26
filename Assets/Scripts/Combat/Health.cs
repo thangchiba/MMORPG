@@ -9,9 +9,11 @@ namespace MMORPG.Combat
     {
         [SerializeField] float health = 100f;
         Animator animator;
+        CombatTarget combatTarget;
         private void Start()
         {
             animator = gameObject.GetComponentInChildren<Animator>();
+            combatTarget = GetComponent<CombatTarget>();
         }
 
         public void TakeDamage(float damage)
@@ -26,7 +28,7 @@ namespace MMORPG.Combat
 
         public void Death()
         {
-            GetComponent<CombatTarget>().Death();
+            combatTarget.Death();
             Debug.Log(gameObject.name + " Be Killed!!!");
             animator.SetTrigger("death");
         }

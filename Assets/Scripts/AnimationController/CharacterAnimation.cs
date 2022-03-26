@@ -7,15 +7,22 @@ namespace MMORPG.Combat
 {
     public class CharacterAnimation : MonoBehaviour
     {
+        Fight fight;
+        Animator animator;
+        private void Start()
+        {
+            fight = GetComponentInParent<Fight>();
+            animator = GetComponent<Animator>();
+        }
         public void Damage()
         {
-            GetComponentInParent<Fight>().Damage();
+            fight.Damage();
         }
 
         public void Died()
         {
             print("Died Event");
-            GetComponent<Animator>().ResetTrigger("death");
+            animator.ResetTrigger("death");
         }
     }
 }

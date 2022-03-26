@@ -11,10 +11,11 @@ namespace MMORPG.Movement
     public class Mover : MonoBehaviour, IAction
     {
         NavMeshAgent navMeshAgent;
-
+        Animator animator;
         private void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            animator = GetComponentInChildren<Animator>();
         }
 
         void Update()
@@ -52,7 +53,7 @@ namespace MMORPG.Movement
             //Get forward speed
             float speed = localVelocity.z;
             //Set forward speed to BlendTree
-            GetComponentInChildren<Animator>().SetFloat("moveSpeed", speed);
+            animator.SetFloat("moveSpeed", speed);
         }
     }
 }

@@ -11,11 +11,17 @@ namespace MMORPG.Control
     public class PlayerController : MonoBehaviour
     {
         public bool disableControl = false;
+        Mover mover;
+        Fight fight;
         private void Awake()
         {
             Application.targetFrameRate = 70;
         }
-
+        private void Start()
+        {
+            mover = GetComponent<Mover>();
+            fight = GetComponent<Fight>();
+        }
         private void Update()
         {
             if (disableControl) return;
@@ -34,7 +40,7 @@ namespace MMORPG.Control
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fight>().Attack(target);
+                    fight.Attack(target);
                 }
                 return true;
             }
@@ -49,7 +55,7 @@ namespace MMORPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    mover.StartMoveAction(hit.point);
                 }
                 return true;
             }
