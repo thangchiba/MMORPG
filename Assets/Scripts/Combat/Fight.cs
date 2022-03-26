@@ -11,7 +11,7 @@ namespace MMORPG.Combat
         [SerializeField][Range(50, 150)] float attackSpeed = 50f;
         [SerializeField] float attackDamage = 5f;
         Animator animator;
-        Transform target;
+        CombatTarget target;
 
         void Start()
         {
@@ -20,10 +20,11 @@ namespace MMORPG.Combat
         private void Update()
         {
             if (target == null) return;
-
+            if (target.isDead) { Cancel(); return; }
             if (!GetIsInRange())
             {
-                GetComponent<Mover>().MoveTo(target.position);
+                GetComponent<Mover>().MoveTo(target.transform.position);
+                InterruptAttack();
             }
             else
             {
@@ -34,18 +35,18 @@ namespace MMORPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < attackRange;
+            return Vector3.Distance(transform.position, target.transform.position) < attackRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget;
         }
 
         private void AttackBehaviour()
         {
-            gameObject.transform.LookAt(target);
+            gameObject.transform.LookAt(target.transform);
             animator.SetTrigger("attack");
             animator.SetFloat("attackSpeed", attackSpeed / 100);
         }
@@ -58,6 +59,12 @@ namespace MMORPG.Combat
         public void Cancel()
         {
             target = null;
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
+        }
+
+        public void InterruptAttack()
+        {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
         }

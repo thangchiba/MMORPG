@@ -15,10 +15,15 @@ namespace MMORPG.Core
             if (currentAction == action) return;
             if (currentAction != null)
             {
-                Debug.Log("Change Action ");
-                currentAction.Cancel();
+                CancelCurrentAction();
             }
             currentAction = action;
+        }
+
+        public void CancelCurrentAction()
+        {
+            Debug.Log("Change Action ");
+            currentAction.Cancel();
         }
     }
 }

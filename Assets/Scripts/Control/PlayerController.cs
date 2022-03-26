@@ -10,6 +10,7 @@ namespace MMORPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        public bool disableControl = false;
         private void Awake()
         {
             Application.targetFrameRate = 70;
@@ -17,6 +18,7 @@ namespace MMORPG.Control
 
         private void Update()
         {
+            if (disableControl) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
         }

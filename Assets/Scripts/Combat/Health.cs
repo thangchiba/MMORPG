@@ -1,28 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using MMORPG.Control;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace MMORPG.Combat
 {
-    [SerializeField] float health = 100f;
-    Animator animator;
-    private void Start()
+    public class Health : MonoBehaviour
     {
-        animator = gameObject.GetComponentInChildren<Animator>();
-    }
-    public void TakeDamage(float damage)
-    {
-        health = Mathf.Max(health - damage, 0);
-        Debug.Log("HP : " + health);
-        if (health == 0)
+        [SerializeField] float health = 100f;
+        Animator animator;
+        private void Start()
         {
-            Death();
+            animator = gameObject.GetComponentInChildren<Animator>();
         }
-    }
 
-    public void Death()
-    {
-        Debug.Log(gameObject.name + " Be Killed!!!");
-        animator.SetTrigger("death");
+        public void TakeDamage(float damage)
+        {
+            health = Mathf.Max(health - damage, 0);
+            Debug.Log("HP : " + health);
+            if (health == 0)
+            {
+                Death();
+            }
+        }
+
+        public void Death()
+        {
+            GetComponent<CombatTarget>().Death();
+            Debug.Log(gameObject.name + " Be Killed!!!");
+            animator.SetTrigger("death");
+        }
     }
 }
