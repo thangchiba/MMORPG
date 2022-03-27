@@ -13,12 +13,14 @@ namespace MMORPG.Combat
         [SerializeField] GameObject patrolPath;
         ActionScheduler actionScheduler;
         Mover mover;
+        CombatTarget combatTarget;
         bool patrolStatus = false;
         int patrolCurrentIndex = 0;
         void Start()
         {
             actionScheduler = GetComponent<ActionScheduler>();
             mover = GetComponent<Mover>();
+            combatTarget = GetComponent<CombatTarget>();
         }
 
         public void StartPatrolAction()
@@ -30,7 +32,8 @@ namespace MMORPG.Combat
         IEnumerator PatrolBehaviour()
         {
             patrolStatus = true;
-            while (true)
+            bool isDied = combatTarget.isDead;
+            while (!isDied)
             {
                 //Patrolling position will loop 0-...
                 int nextPointIndex = patrolCurrentIndex % patrolPath.transform.childCount;
