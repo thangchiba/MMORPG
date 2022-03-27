@@ -26,8 +26,8 @@ namespace MMORPG.Combat
             if (target.isDead) { Cancel(); return; }
             if (!GetIsInRange())
             {
-                mover.MoveTo(target.transform.position);
                 InterruptAttack();
+                mover.MoveTo(target.transform.position);
             }
             else
             {
