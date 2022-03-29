@@ -14,7 +14,7 @@ namespace MMORPG.Combat
             isDead = true;
             GetComponent<Fight>().enabled = false;
             GetComponent<Mover>().enabled = false;
-            if (tag == "Player") { GetComponent<PlayerController>().disableControl = true; }
+            if (tag == "Player") { GetComponent<PlayerController>().enabled = false; }
             if (tag == "Minion")
             {
                 GetComponent<ArtificialIntelligence>().enabled = false;
