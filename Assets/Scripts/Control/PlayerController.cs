@@ -15,7 +15,7 @@ namespace MMORPG.Control
         Fight fight;
         private void Awake()
         {
-            Application.targetFrameRate = 70;
+            Application.targetFrameRate = 500;
         }
         private void Start()
         {
