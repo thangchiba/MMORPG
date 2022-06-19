@@ -10,14 +10,13 @@ namespace MMORPG.Combat
         [SerializeField] float attackRange = 3f;
         [SerializeField][Range(5, 150)] float attackSpeed = 30f;
         [SerializeField] float attackDamage = 5f;
-        [SerializeField] GameObject weapon = null;
         [SerializeField] Transform handTransform = null;
-
+        [SerializeField] Weapon weapon = null;
         Animator animator;
         CombatTarget target;
         Mover mover;
         ActionScheduler actionScheduler;
-        void Start()
+        void Awake()
         {
             animator = GetComponentInChildren<Animator>();
             mover = GetComponent<Mover>();
@@ -42,8 +41,11 @@ namespace MMORPG.Combat
 
         public void EquipWeapon()
         {
+            if (weapon == null) return;
             //Equip weapon on hand
-            Instantiate(weapon, handTransform);
+            //Instantiate(weapon, handTransform);
+            weapon.Spawn(handTransform, animator);
+
         }
 
         private bool GetIsInRange()
