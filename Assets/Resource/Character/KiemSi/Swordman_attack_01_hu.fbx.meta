@@ -815,7 +815,7 @@ ModelImporter:
     second: ch_blade_weapon_01
   - first:
       74: 7400000
-    second: KiemSi_attack_01_hu
+    second: KiemSi_attack_sword_01_hu
   - first:
       95: 9500000
     second: //RootNode
@@ -864,7 +864,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: KiemSi_attack_01_hu
+      name: KiemSi_attack_sword_01_hu
       takeName: Take 001
       internalID: 0
       firstFrame: 0

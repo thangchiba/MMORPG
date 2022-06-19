@@ -11,7 +11,7 @@ namespace MMORPG.Combat
     public class ArtificialIntelligence : MonoBehaviour
     {
         [SerializeField] float chaseRange = 5f;
-        [SerializeField] float waitTimeBackToPatrolling = 3f;
+        //[SerializeField] float waitTimeBackToPatrolling = 3f;
         CombatTarget player;
         Fight fight;
         Patrol patrol;

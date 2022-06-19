@@ -21,7 +21,6 @@ namespace MMORPG.Combat
 
         public void Died()
         {
-            print("Died Event");
             animator.ResetTrigger("death");
         }
     }
