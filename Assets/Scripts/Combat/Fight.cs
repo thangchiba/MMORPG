@@ -8,8 +8,11 @@ namespace MMORPG.Combat
     public class Fight : MonoBehaviour, IAction
     {
         [SerializeField] float attackRange = 3f;
-        [SerializeField][Range(50, 150)] float attackSpeed = 50f;
+        [SerializeField][Range(5, 150)] float attackSpeed = 30f;
         [SerializeField] float attackDamage = 5f;
+        [SerializeField] GameObject weapon = null;
+        [SerializeField] Transform handTransform = null;
+
         Animator animator;
         CombatTarget target;
         Mover mover;
@@ -19,6 +22,7 @@ namespace MMORPG.Combat
             animator = GetComponentInChildren<Animator>();
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
+            EquipWeapon();
         }
         private void Update()
         {
@@ -34,6 +38,12 @@ namespace MMORPG.Combat
                 mover.Cancel();
                 AttackBehaviour();
             }
+        }
+
+        public void EquipWeapon()
+        {
+            //Equip weapon on hand
+            Instantiate(weapon, handTransform);
         }
 
         private bool GetIsInRange()
