@@ -7,8 +7,8 @@ namespace MMORPG.Combat
 {
     public class Fight : MonoBehaviour, IAction
     {
-        [SerializeField] float attackRange = 3f;
-        [SerializeField][Range(5, 150)] float attackSpeed = 30f;
+        [SerializeField] float attackRange = 1f;
+        [SerializeField][Range(5, 150)] float attackSpeed = 5f;
         [SerializeField] float attackDamage = 5f;
         [SerializeField] Transform handTransform = null;
         [SerializeField] Weapon weapon = null;
@@ -45,7 +45,9 @@ namespace MMORPG.Combat
             //Equip weapon on hand
             //Instantiate(weapon, handTransform);
             weapon.Spawn(handTransform, animator);
-
+            attackRange += weapon.AttackRange;
+            attackSpeed += weapon.AttackSpeed;
+            attackDamage += weapon.AttackDamage;
         }
 
         private bool GetIsInRange()
