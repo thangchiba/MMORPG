@@ -19,6 +19,8 @@ namespace MMORPG.Combat
         ActionScheduler actionScheduler;
         Weapon currentWeapon = null;
         public Weapon CurrentWeapon { get => currentWeapon;}
+        public CombatTarget Target { get => target; }
+
         void Awake()
         {
             animator = GetComponentInChildren<Animator>();
@@ -46,6 +48,7 @@ namespace MMORPG.Combat
         {
             if (weapon == null) return;
             currentWeapon = weapon;
+            print(CurrentWeapon);
             //Equip weapon on hand
             //Instantiate(weapon, handTransform);
             weapon.Spawn(leftHandTransform,rightHandTransform, animator);

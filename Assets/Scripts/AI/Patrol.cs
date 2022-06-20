@@ -42,6 +42,7 @@ namespace MMORPG.Combat
                 patrolCurrentIndex++;
                 yield return new WaitForSeconds(5f);
             }
+            Cancel();
         }
 
         public void Cancel()

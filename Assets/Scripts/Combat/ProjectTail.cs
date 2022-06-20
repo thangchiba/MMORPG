@@ -2,26 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectTail : MonoBehaviour
+namespace MMORPG.Combat
 {
-    [SerializeField] Transform target;
-    [SerializeField] float speed;
-    // Update is called once per frame
-    void Update()
+    public class ProjectTail : MonoBehaviour
     {
-        if (target == null) return;
-        transform.LookAt(GetAimLocation());
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+        Transform target;
+        float speed;
+        float attackDamage;
+        public float Speed { get => speed; set => speed = value; }
+        public Transform Target { get => target; set => target = value; }
+        public float AttackDamage { get => attackDamage; set => attackDamage = value; }
 
-    private Vector3 GetAimLocation()
-    {
-        CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
-        if (targetCapsule == null)
+        // Update is called once per frame
+        void Update()
         {
-            return target.position;
+            if (target == null) return;
+            transform.LookAt(GetAimLocation());
+            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
-        return target.position + Vector3.up * targetCapsule.height / 2;
-    }
 
+        private Vector3 GetAimLocation()
+        {
+            CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
+            if (targetCapsule == null)
+            {
+                return target.transform.position;
+            }
+            return target.transform.position + Vector3.up * targetCapsule.height / 2;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Player") return;
+            try
+            {
+                collision.gameObject.GetComponent<Health>().TakeDamage(attackDamage);
+            }
+            finally
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
 }
