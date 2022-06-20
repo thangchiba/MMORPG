@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MMORPG.Combat
 {
@@ -10,10 +11,13 @@ namespace MMORPG.Combat
         [SerializeField] float attackRange = 1f;
         [SerializeField][Range(5, 150)]float attackSpeed = 20f;
         [SerializeField] float attackDamage = 10f;
+        [SerializeField] Hand hand;
 
-        public void Spawn(Transform handTransform, Animator animator)
+        public void Spawn(Transform leftHandTransform, Transform rightHandTransform, Animator animator)
         {
-            if(weaponPrefab!=null)
+            Transform handTransform = rightHandTransform;
+            if (hand == Hand.Left) handTransform = leftHandTransform;
+            if (weaponPrefab!=null)
             Instantiate(weaponPrefab, handTransform);
             if(animatorOverride!=null)
             animator.runtimeAnimatorController = animatorOverride;
@@ -22,5 +26,11 @@ namespace MMORPG.Combat
         public float AttackRange { get => attackRange; }
         public float AttackSpeed { get => attackSpeed; }
         public float AttackDamage { get => attackDamage; }
+    }
+
+    enum Hand
+    {
+        Right,
+        Left,
     }
 }

@@ -19,6 +19,12 @@ namespace MMORPG.Combat
             fight.Damage();
         }
 
+        public void Shot()
+        {
+            print("Shot enemy");
+            fight.Damage();
+        }
+
         public void Died()
         {
             animator.ResetTrigger("death");
