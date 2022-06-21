@@ -21,8 +21,7 @@ namespace MMORPG.Combat
 
         public void Shot()
         {
-            fight = GetComponentInParent<Fight>();
-            fight.CurrentWeapon.SpawnProjectTail(fight.Target.transform);
+            fight.Shot();
         }
 
         public void Died()

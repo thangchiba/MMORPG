@@ -6,42 +6,39 @@ namespace MMORPG.Combat
 {
     public class ProjectTail : MonoBehaviour
     {
-        Transform target;
+        Fight fight;
         float speed;
-        float attackDamage;
-        public float Speed { get => speed; set => speed = value; }
-        public Transform Target { get => target; set => target = value; }
-        public float AttackDamage { get => attackDamage; set => attackDamage = value; }
+        public void SpawnProjectTail(Fight fight,float speed)
+        {
+            Debug.Log("vao trong projecttail");
+            this.fight = fight;
+            this.speed = speed;
+        }
 
         // Update is called once per frame
         void Update()
         {
-            if (target == null) return;
+            if (fight.CombatTarget == null) return;
             transform.LookAt(GetAimLocation());
-            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
         private Vector3 GetAimLocation()
         {
-            CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
+            CapsuleCollider targetCapsule = fight.CombatTarget.GetComponent<CapsuleCollider>();
             if (targetCapsule == null)
             {
-                return target.transform.position;
+                return fight.CombatTarget.transform.position;
             }
-            return target.transform.position + Vector3.up * targetCapsule.height / 2;
+            return fight.CombatTarget.transform.position + Vector3.up * targetCapsule.height / 2;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == "Player") return;
-            try
-            {
-                collision.gameObject.GetComponent<Health>().TakeDamage(attackDamage);
-            }
-            finally
-            {
-                Destroy(gameObject);
-            }
+            if (other.GetComponent<Fight>() == fight) return;
+            //other.gameObject.GetComponent<Health>().TakeDamage(attackDamage);
+            fight.Damage();
+            Destroy(gameObject);
         }
 
     }

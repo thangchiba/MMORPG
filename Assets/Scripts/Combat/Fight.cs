@@ -14,12 +14,12 @@ namespace MMORPG.Combat
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
         Animator animator;
-        CombatTarget target;
+        CombatTarget combatTarget;
         Mover mover;
         ActionScheduler actionScheduler;
         Weapon currentWeapon = null;
         public Weapon CurrentWeapon { get => currentWeapon;}
-        public CombatTarget Target { get => target; }
+        public CombatTarget CombatTarget { get => combatTarget; set => combatTarget = value; }
 
         void Awake()
         {
@@ -30,12 +30,12 @@ namespace MMORPG.Combat
         }
         private void Update()
         {
-            if (target == null) return;
-            if (target.isDead) { Cancel(); return; }
+            if (combatTarget == null) return;
+            if (combatTarget.isDead) { Cancel(); return; }
             if (!GetIsInRange())
             {
                 InterruptAttack();
-                mover.MoveTo(target.transform.position);
+                mover.MoveTo(combatTarget.transform.position);
             }
             else
             {
@@ -48,9 +48,6 @@ namespace MMORPG.Combat
         {
             if (weapon == null) return;
             currentWeapon = weapon;
-            print(CurrentWeapon);
-            //Equip weapon on hand
-            //Instantiate(weapon, handTransform);
             weapon.Spawn(leftHandTransform,rightHandTransform, animator);
             attackRange += weapon.AttackRange;
             attackSpeed += weapon.AttackSpeed;
@@ -59,30 +56,35 @@ namespace MMORPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < attackRange;
+            return Vector3.Distance(transform.position, combatTarget.transform.position) < attackRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             actionScheduler.StartAction(this);
-            target = combatTarget;
+            this.combatTarget = combatTarget;
         }
 
         private void AttackBehaviour()
         {
-            gameObject.transform.LookAt(target.transform);
+            gameObject.transform.LookAt(combatTarget.transform);
             animator.SetTrigger("attack");
             animator.SetFloat("attackSpeed", attackSpeed / 100);
         }
 
         public void Damage()
         {
-            target.GetComponent<Health>().TakeDamage(attackDamage);
+            combatTarget.GetComponent<Health>().TakeDamage(attackDamage);
+        }
+
+        public void Shot()
+        {
+            currentWeapon.SpawnProjectTail(this,leftHandTransform,rightHandTransform);
         }
 
         public void Cancel()
         {
-            target = null;
+            combatTarget = null;
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
         }

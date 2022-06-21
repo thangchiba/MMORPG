@@ -19,6 +19,7 @@ namespace MMORPG.Combat
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
             fight = GetComponent<Fight>();
+            //fight.CombatTarget = player;
             patrol = GetComponentInParent<Patrol>();
         }
         private void Update()

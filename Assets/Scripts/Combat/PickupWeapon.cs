@@ -6,13 +6,14 @@ namespace MMORPG.Combat {
 public class PickupWeapon : MonoBehaviour
 {
         [SerializeField] Weapon weapon = null;
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
+
             print("cham vao vukhi");
-            if(collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
                 print("Da cham vao vu khi");
-                 collision.gameObject.GetComponent<Fight>().EquipWeapon(weapon);
+                other.gameObject.GetComponent<Fight>().EquipWeapon(weapon);
                 Destroy(gameObject);
             }
         }

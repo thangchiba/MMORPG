@@ -8,6 +8,7 @@ TagManager:
   - Minion
   - PatrolPoint
   - Fader
+  - Spawn
   layers:
   - Default
   - TransparentFX
