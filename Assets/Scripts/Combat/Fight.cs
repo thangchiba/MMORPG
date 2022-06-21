@@ -48,11 +48,24 @@ namespace MMORPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             if (weapon == null) return;
+            DestroyOldWeapon();
             currentWeapon = weapon;
             weapon.Spawn(leftHandTransform,rightHandTransform, animator);
             attackRange += weapon.AttackRange;
             attackSpeed += weapon.AttackSpeed;
             attackDamage += weapon.AttackDamage;
+        }
+
+        private void DestroyOldWeapon()
+        {
+            foreach (Transform child in rightHandTransform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            foreach (Transform child in leftHandTransform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
 
         private bool GetIsInRange()

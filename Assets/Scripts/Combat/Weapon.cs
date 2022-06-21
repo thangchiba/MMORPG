@@ -25,7 +25,6 @@ namespace MMORPG.Combat
                 Instantiate(weaponPrefab, handTransform);
             if (animatorOverride == null) return;
                 animator.runtimeAnimatorController = animatorOverride;
-
         }
 
         public void SpawnProjectTail(Fight fight,Transform leftHandTransform, Transform rightHandTransform)
@@ -34,7 +33,6 @@ namespace MMORPG.Combat
             GameObject projectTail = Instantiate(projectTailPrefab, handTransform.position, Quaternion.identity);
             projectTail.GetComponent<ProjectTail>().SpawnProjectTail(fight, projectTailSpeed);
         }
-        
 
         private Transform GetHandTransform(Transform leftHandTransform, Transform rightHandTransform)
         {
