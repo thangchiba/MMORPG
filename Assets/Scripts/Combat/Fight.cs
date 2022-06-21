@@ -20,6 +20,7 @@ namespace MMORPG.Combat
         Weapon currentWeapon = null;
         public Weapon CurrentWeapon { get => currentWeapon;}
         public CombatTarget CombatTarget { get => combatTarget; set => combatTarget = value; }
+        public float AttackDamage { get => attackDamage; set => attackDamage = value; }
 
         void Awake()
         {

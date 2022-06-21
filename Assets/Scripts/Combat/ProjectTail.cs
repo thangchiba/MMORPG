@@ -6,38 +6,42 @@ namespace MMORPG.Combat
 {
     public class ProjectTail : MonoBehaviour
     {
-        Fight fight;
+        Fight fight = null;
+        CombatTarget combatTarget = null;
         float speed;
         public void SpawnProjectTail(Fight fight,float speed)
         {
-            Debug.Log("vao trong projecttail");
+            Destroy(gameObject, 5f);
             this.fight = fight;
+            this.combatTarget = fight.CombatTarget;
             this.speed = speed;
+            transform.LookAt(GetAimLocation());
+            StartCoroutine(ArrowMoveToTarget());
         }
 
-        // Update is called once per frame
-        void Update()
+        IEnumerator ArrowMoveToTarget()
         {
-            if (fight.CombatTarget == null) return;
-            transform.LookAt(GetAimLocation());
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            while (true)
+            {
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         private Vector3 GetAimLocation()
         {
-            CapsuleCollider targetCapsule = fight.CombatTarget.GetComponent<CapsuleCollider>();
+            CapsuleCollider targetCapsule = combatTarget.GetComponent<CapsuleCollider>();
             if (targetCapsule == null)
             {
-                return fight.CombatTarget.transform.position;
+                return combatTarget.transform.position;
             }
-            return fight.CombatTarget.transform.position + Vector3.up * targetCapsule.height / 2;
+            return combatTarget.transform.position + Vector3.up * targetCapsule.height / 2;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Fight>() == fight) return;
-            //other.gameObject.GetComponent<Health>().TakeDamage(attackDamage);
-            fight.Damage();
+            combatTarget.GetComponent<Health>().TakeDamage(fight.AttackDamage);
             Destroy(gameObject);
         }
 

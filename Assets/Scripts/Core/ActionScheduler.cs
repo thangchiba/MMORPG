@@ -22,7 +22,6 @@ namespace MMORPG.Core
 
         public void CancelCurrentAction()
         {
-            Debug.Log("Change Action ");
             currentAction.Cancel();
         }
     }
