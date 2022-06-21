@@ -10,7 +10,7 @@ namespace MMORPG.Combat
         CombatTarget combatTarget = null;
         float speed;
         bool isHoming;
-        public void SpawnProjectTail(Fight fight,float speed,bool isHoming)
+        public void SpawnProjectTail(Fight fight, float speed, bool isHoming)
         {
             Destroy(gameObject, 5f);
             this.fight = fight;
@@ -43,10 +43,20 @@ namespace MMORPG.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Fight>() == fight) return;
-            if (combatTarget.isDead) return;
-            other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
-            Destroy(gameObject);
+            try
+            {
+                if (other.GetComponent<Fight>() == fight) return;
+                print("1");
+                //if (combatTarget.isDead) return;
+                other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
+                print("2");
+                Destroy(gameObject);
+                print("3");
+            }
+            catch (System.Exception e)
+            {
+                print("has error" + e.Message);
+            }
         }
 
     }
