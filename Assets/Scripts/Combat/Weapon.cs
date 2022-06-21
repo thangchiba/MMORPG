@@ -17,6 +17,7 @@ namespace MMORPG.Combat
         public float AttackDamage { get => attackDamage; }
         [SerializeField] GameObject projectTailPrefab = null;
         [SerializeField] float projectTailSpeed = 10;
+        [SerializeField] bool projectTailIsHoming = false;
 
         public void Spawn(Transform leftHandTransform, Transform rightHandTransform, Animator animator)
         {
@@ -31,7 +32,7 @@ namespace MMORPG.Combat
         {
             Transform handTransform = GetHandTransform(leftHandTransform, rightHandTransform);
             GameObject projectTail = Instantiate(projectTailPrefab, handTransform.position, Quaternion.identity);
-            projectTail.GetComponent<ProjectTail>().SpawnProjectTail(fight, projectTailSpeed);
+            projectTail.GetComponent<ProjectTail>().SpawnProjectTail(fight, projectTailSpeed, projectTailIsHoming);
         }
 
         private Transform GetHandTransform(Transform leftHandTransform, Transform rightHandTransform)

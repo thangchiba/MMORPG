@@ -9,12 +9,14 @@ namespace MMORPG.Combat
         Fight fight = null;
         CombatTarget combatTarget = null;
         float speed;
-        public void SpawnProjectTail(Fight fight,float speed)
+        bool isHoming;
+        public void SpawnProjectTail(Fight fight,float speed,bool isHoming)
         {
             Destroy(gameObject, 5f);
             this.fight = fight;
             this.combatTarget = fight.CombatTarget;
             this.speed = speed;
+            this.isHoming = isHoming;
             transform.LookAt(GetAimLocation());
             StartCoroutine(ArrowMoveToTarget());
         }
@@ -23,6 +25,7 @@ namespace MMORPG.Combat
         {
             while (true)
             {
+                if (isHoming) transform.LookAt(combatTarget.transform);
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
@@ -41,7 +44,8 @@ namespace MMORPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Fight>() == fight) return;
-            combatTarget.GetComponent<Health>().TakeDamage(fight.AttackDamage);
+            if (combatTarget.isDead) return;
+            other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
             Destroy(gameObject);
         }
 
