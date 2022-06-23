@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396adb3d817fc4e539d221c9450e7906, type: 3}
+  m_Name: BlueSword
+  m_EditorClassIdentifier: 
+  animatorOverride: {fileID: 22100000, guid: 9fdab0e2ceef14d389dd12ea0e4ed736, type: 2}
+  weaponPrefab: {fileID: 6013990982369288243, guid: 77dc7bb5fd2514d28bbaa1b9864af365, type: 3}
+  attackRange: 1
+  attackSpeed: 5
+  attackDamage: 10

@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412685747184634570, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: health
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6412685747184634573, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: attackRange

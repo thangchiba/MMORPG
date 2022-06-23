@@ -12,7 +12,7 @@ namespace MMORPG.Combat
         [SerializeField] float attackDamage = 5f;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
-        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] String defaultWeaponName = "Unarmed";
         Animator animator;
         CombatTarget combatTarget;
         Mover mover;
@@ -27,7 +27,8 @@ namespace MMORPG.Combat
             animator = GetComponentInChildren<Animator>();
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
-            EquipWeapon(defaultWeapon);
+            var weapon = Resources.Load<Weapon>(defaultWeaponName);
+            EquipWeapon(weapon);
         }
         private void Update()
         {

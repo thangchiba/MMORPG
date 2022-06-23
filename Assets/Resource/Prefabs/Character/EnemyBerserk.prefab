@@ -771,6 +771,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 254116824, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
+      propertyPath: chaseRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 620898266, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2497171570246506659, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: m_Name
       value: EnemyBerserk
@@ -846,7 +854,7 @@ PrefabInstance:
     - target: {fileID: 6412685747184634573, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 3880fad9bde084eb08b8e97ebf17f410, type: 2}
+      objectReference: {fileID: 11400000, guid: efb3ab58d936a416fb83432c31e857db, type: 2}
     - target: {fileID: 6412685747184634573, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: leftHandTransform
       value: 

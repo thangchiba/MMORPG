@@ -8,7 +8,8 @@ namespace MMORPG.PortalTranslate
     enum ListScene
     {
         Map1,
-        Map2
+        Map2,
+        Map3
     }
     public class OnTriggerPortal : MonoBehaviour
     {
@@ -16,7 +17,7 @@ namespace MMORPG.PortalTranslate
         TranslateFading fader;
         private void Start()
         {
-            fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<TranslateFading>();
+            //fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<TranslateFading>();
         }
         private void OnTriggerEnter(Collider other)
         {
