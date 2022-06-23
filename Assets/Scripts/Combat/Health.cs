@@ -26,7 +26,7 @@ namespace MMORPG.Combat
         public void Death()
         {
             combatTarget.Death();
-            Debug.Log(gameObject.name + " Be Killed!!!");
+            //Debug.Log(gameObject.name + " Be Killed!!!");
             animator.SetTrigger("death");
         }
     }

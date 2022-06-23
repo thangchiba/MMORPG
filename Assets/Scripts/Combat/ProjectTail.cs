@@ -6,6 +6,7 @@ namespace MMORPG.Combat
 {
     public class ProjectTail : MonoBehaviour
     {
+        [SerializeField] GameObject BoomEffect = null;
         Fight fight = null;
         CombatTarget combatTarget = null;
         float speed;
@@ -43,19 +44,12 @@ namespace MMORPG.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            try
+            if (other.GetComponent<Fight>() == fight) return;
+            other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
+            Destroy(gameObject);
+            if (BoomEffect != null)
             {
-                if (other.GetComponent<Fight>() == fight) return;
-                print("1");
-                //if (combatTarget.isDead) return;
-                other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
-                print("2");
-                Destroy(gameObject);
-                print("3");
-            }
-            catch (System.Exception e)
-            {
-                print("has error" + e.Message);
+                Instantiate(BoomEffect, other.transform);
             }
         }
 
