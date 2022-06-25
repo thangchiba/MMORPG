@@ -26,9 +26,9 @@ namespace MMORPG.Combat
         {
             while (true)
             {
-                if (isHoming) transform.LookAt(combatTarget.transform);
+                if (isHoming) transform.LookAt(GetAimLocation());
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                yield return new WaitForEndOfFrame();
+                yield return null;
             }
         }
 
