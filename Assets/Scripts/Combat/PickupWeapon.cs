@@ -11,7 +11,7 @@ namespace MMORPG.Combat
         {
             if (other.gameObject.tag == "Player")
             {
-                var weapon = Resources.Load<Weapon>(weaponName);
+                var weapon = Resources.Load<Weapon>("Weapons/"+weaponName);
                 other.gameObject.GetComponent<Fight>().EquipWeapon(weapon);
                 Destroy(gameObject);
             }

@@ -7,7 +7,7 @@ namespace MMORPG.Stats
     {
         [SerializeField][Range(1, 100)] int level = 1;
         [SerializeField] CharacterClass characterClass;
-        [SerializeField] Progression progression;
+        Progression progression;
 
         private void Start()
         {

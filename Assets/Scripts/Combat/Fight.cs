@@ -27,7 +27,7 @@ namespace MMORPG.Combat
             animator = GetComponentInChildren<Animator>();
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
-            var weapon = Resources.Load<Weapon>(defaultWeaponName);
+            var weapon = Resources.Load<Weapon>("Weapons/"+defaultWeaponName);
             EquipWeapon(weapon);
         }
         private void Update()
