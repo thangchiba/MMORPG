@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c1f08fcdfd34c93a2931f6b1ff635e, type: 3}
   m_Name: Witch
   m_EditorClassIdentifier: 
-  characterClass: 0
+  characterClass: 4
   health:
-  - 100
-  - 200
-  - 300
+  - 60
+  - 110
+  - 160

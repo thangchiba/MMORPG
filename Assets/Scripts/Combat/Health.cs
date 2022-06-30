@@ -31,5 +31,10 @@ namespace MMORPG.Combat
             //Debug.Log(gameObject.name + " Be Killed!!!");
             animator.SetTrigger("death");
         }
+
+        public float GetHealthPercent()
+        {
+            return (health / GetComponent<BaseStats>().GetHealth()) * 100; 
+        }
     }
 }
