@@ -16,7 +16,10 @@ namespace MMORPG.Combat
         private void Update()
         {
             GetComponent<TextMeshProUGUI>().text = String.Format("{0:0}%",health.GetHealthPercent());
+
         }
+
+
     }
 
 }
