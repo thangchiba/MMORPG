@@ -1,10 +1,14 @@
 ﻿using System;
-public enum CharacterClass
-{
-    Warrior,
-    Tanker,
-    Archer,
-    Assasin,
-    Witch,
-}
 
+namespace MMORPG.Stats
+{
+    public enum CharacterClass
+    {
+        Warrior,
+        Tanker,
+        Archer,
+        Assasin,
+        Witch,
+    }
+
+}
