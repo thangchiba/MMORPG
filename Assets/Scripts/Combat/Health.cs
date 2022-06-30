@@ -1,3 +1,4 @@
+using MMORPG.Stats;
 using UnityEngine;
 
 namespace MMORPG.Combat
@@ -11,6 +12,7 @@ namespace MMORPG.Combat
         {
             animator = gameObject.GetComponentInChildren<Animator>();
             combatTarget = GetComponent<CombatTarget>();
+            health = GetComponent<BaseStats>().GetHealth();
         }
 
         public void TakeDamage(float damage)

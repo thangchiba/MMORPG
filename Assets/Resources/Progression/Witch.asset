@@ -10,31 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5c1f08fcdfd34c93a2931f6b1ff635e, type: 3}
-  m_Name: Progression
+  m_Name: Witch
   m_EditorClassIdentifier: 
-  characterProgresses:
-  - characterClass: 0
-    health:
-    - 100
-    - 200
-    - 300
-  - characterClass: 1
-    health:
-    - 200
-    - 350
-    - 500
-  - characterClass: 2
-    health:
-    - 75
-    - 125
-    - 175
-  - characterClass: 3
-    health:
-    - 80
-    - 160
-    - 240
-  - characterClass: 4
-    health:
-    - 75
-    - 125
-    - 175
+  characterClass: 0
+  health:
+  - 100
+  - 200
+  - 300

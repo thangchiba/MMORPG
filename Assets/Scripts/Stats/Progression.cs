@@ -6,13 +6,12 @@ namespace MMORPG.Stats
     [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression", order = 0)]
     public class Progression : ScriptableObject
     {
-        [SerializeField] CharacterProgression[] characterProgresses = null;
+       [SerializeField] CharacterClass characterClass;
+       [SerializeField] float[] health;
 
-        [Serializable]
-        class CharacterProgression
+        public float GetHealth(int level)
         {
-            [SerializeField] CharacterClass characterClass;
-            [SerializeField] float[] health = 0;
+            return health[level-1];
         }
     }
 }
