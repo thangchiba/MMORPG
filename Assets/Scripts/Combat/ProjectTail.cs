@@ -45,7 +45,7 @@ namespace MMORPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Fight>() == fight) return;
-            other.GetComponent<Health>().TakeDamage(fight.AttackDamage);
+            other.GetComponent<Health>().TakeDamage(fight,fight.AttackDamage);
             Destroy(gameObject);
             if (BoomEffect != null)
             {

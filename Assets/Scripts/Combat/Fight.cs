@@ -89,7 +89,8 @@ namespace MMORPG.Combat
 
         public void Damage()
         {
-            combatTarget.GetComponent<Health>().TakeDamage(attackDamage);
+            float remainingHealth = combatTarget.GetComponent<Health>().TakeDamage(this,attackDamage);
+            Debug.Log(remainingHealth);
         }
 
         public void Shot()

@@ -15,20 +15,23 @@ namespace MMORPG.Combat
             health = GetComponent<BaseStats>().GetHealth();
         }
 
-        public void TakeDamage(float damage)
+        public float TakeDamage(Fight instigator,float damage)
         {
             health = Mathf.Max(health - damage, 0);
             //Debug.Log("HP : " + health);
             if (health == 0)
             {
-                Death();
+                Death(instigator);
             }
+            return health;
         }
 
-        public void Death()
+        public void Death(Fight instigator)
         {
             combatTarget.Death();
-            //Debug.Log(gameObject.name + " Be Killed!!!");
+            Debug.Log(gameObject.name + " Be Killed By "+instigator.gameObject.name);
+            instigator.GetComponent<BaseStats>()
+                .UpExperience(gameObject.GetComponent<BaseStats>().GetExperience());
             animator.SetTrigger("death");
         }
 

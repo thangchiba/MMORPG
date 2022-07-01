@@ -8,6 +8,7 @@ namespace MMORPG.Stats
         [SerializeField][Range(1, 100)] int level = 1;
         [SerializeField] CharacterClass characterClass;
         Progression progression;
+        [SerializeField] int experience = 10;
 
         private void Start()
         {
@@ -18,6 +19,17 @@ namespace MMORPG.Stats
         public float GetHealth()
         {
             return progression.GetHealth(level);
+        }
+
+        public void UpExperience(int receiveExperience)
+        {
+            experience += receiveExperience;
+            level = progression.GetLevel(experience);
+        }
+
+        public int GetExperience()
+        {
+            return experience;
         }
     }
 

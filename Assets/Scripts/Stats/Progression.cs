@@ -20,5 +20,10 @@ namespace MMORPG.Stats
                 return 60 * level;
             }
         }
+
+        public int GetLevel(int experience)
+        {
+            return experience / 10;
+        }
     }
 }
