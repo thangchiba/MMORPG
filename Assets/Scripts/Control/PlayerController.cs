@@ -15,7 +15,7 @@ namespace MMORPG.Control
         Fight fight;
         private void Awake()
         {
-            Application.targetFrameRate = 500;
+            Application.targetFrameRate = 120;
         }
         private void Start()
         {
@@ -49,13 +49,12 @@ namespace MMORPG.Control
 
         private bool InteractWithMovement()
         {
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
-            if (hasHit)
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            if (hits.Length != 0)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    mover.StartMoveAction(hit.point);
+                    mover.StartMoveAction(hits[hits.Length - 1].point);
                 }
                 return true;
             }

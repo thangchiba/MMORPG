@@ -9,6 +9,7 @@ namespace MMORPG.Stats
         [SerializeField] CharacterClass characterClass;
         Progression progression;
         [SerializeField] int experience = 10;
+        [SerializeField] int experienceReward = 10;
 
         private void Start()
         {
@@ -30,6 +31,11 @@ namespace MMORPG.Stats
         public int GetExperience()
         {
             return experience;
+        }
+
+        public int GetExperienceReward()
+        {
+            return experienceReward;
         }
     }
 

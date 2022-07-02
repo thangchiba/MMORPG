@@ -31,7 +31,7 @@ namespace MMORPG.Combat
             combatTarget.Death();
             Debug.Log(gameObject.name + " Be Killed By "+instigator.gameObject.name);
             instigator.GetComponent<BaseStats>()
-                .UpExperience(gameObject.GetComponent<BaseStats>().GetExperience());
+                .UpExperience(gameObject.GetComponent<BaseStats>().GetExperienceReward());
             animator.SetTrigger("death");
         }
 
