@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace MMORPG.Stats
 {
@@ -22,10 +23,21 @@ namespace MMORPG.Stats
             return progression.GetHealth(level);
         }
 
+        public int GetLevel()
+        {
+            return level;
+        }
         public void UpExperience(int receiveExperience)
         {
+            int currentLevel = level;
             experience += receiveExperience;
             level = progression.GetLevel(experience);
+            if (level > currentLevel) LevelUp(level);
+        }
+
+        private void LevelUp(int level)
+        {
+            Debug.Log("Up level to " +level);
         }
 
         public int GetExperience()
