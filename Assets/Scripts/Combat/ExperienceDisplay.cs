@@ -7,20 +7,18 @@ namespace MMORPG.Combat
 {
     public class ExperienceDisplay : MonoBehaviour
     {
-        BaseStats stats;
+        LevelControl levelControl;
 
         private void Awake()
         {
-            stats = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseStats>();
+            levelControl = GameObject.FindGameObjectWithTag("Player").GetComponent<LevelControl>();
         }
 
         private void Update()
         {
-            GetComponent<TextMeshProUGUI>().text = String.Format("{0}",stats.GetExperience());
+            GetComponent<TextMeshProUGUI>().text = String.Format("{0}",levelControl.GetExperience());
 
         }
-
-
     }
 
 }

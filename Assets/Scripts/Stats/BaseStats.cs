@@ -4,50 +4,28 @@ using System;
 
 namespace MMORPG.Stats
 {
+    [RequireComponent(typeof(LevelControl))]
     public class BaseStats : MonoBehaviour
     {
-        [SerializeField][Range(1, 100)] int level = 1;
         [SerializeField] CharacterClass characterClass;
         Progression progression;
-        [SerializeField] int experience = 10;
-        [SerializeField] int experienceReward = 10;
-
+        LevelControl levelControl;
         private void Start()
         {
             progression = Resources.Load<Progression>
                 ("Progression/" + System.Enum.GetName(typeof(CharacterClass), characterClass));
+            levelControl = GetComponent<LevelControl>();
+            levelControl.SetStartLevel(progression.GetStartLevel());
         }
 
         public float GetHealth()
         {
-            return progression.GetHealth(level);
-        }
-
-        public int GetLevel()
-        {
-            return level;
-        }
-        public void UpExperience(int receiveExperience)
-        {
-            int currentLevel = level;
-            experience += receiveExperience;
-            level = progression.GetLevel(experience);
-            if (level > currentLevel) LevelUp(level);
-        }
-
-        private void LevelUp(int level)
-        {
-            Debug.Log("Up level to " +level);
-        }
-
-        public int GetExperience()
-        {
-            return experience;
+            return progression.GetHealth(levelControl.GetLevel());
         }
 
         public int GetExperienceReward()
         {
-            return experienceReward;
+            return progression.GetExperienceReward(levelControl.GetLevel());
         }
     }
 
