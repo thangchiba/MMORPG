@@ -6,17 +6,19 @@ using MMORPG.Stats;
 namespace MMORPG.Combat
 {
     public class LevelDisplay : MonoBehaviour
-    {               
+    {
         LevelControl levelControl;
 
         private void Awake()
         {
             levelControl = GameObject.FindGameObjectWithTag("Player").GetComponent<LevelControl>();
+            UpdateLevel();
+            levelControl.onUpExperience += UpdateLevel;
         }
 
-        private void Update()
+        private void UpdateLevel()
         {
-            GetComponent<TextMeshProUGUI>().text = String.Format("{0}",levelControl.GetLevel());
+            GetComponent<TextMeshProUGUI>().text = String.Format("{0}", levelControl.GetLevel());
 
         }
     }

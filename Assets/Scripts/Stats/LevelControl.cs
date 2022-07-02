@@ -9,10 +9,7 @@ namespace MMORPG.Stats
         [SerializeField] int level = 1;
         [SerializeField] int experience = 0;
 
-        public void SetStartLevel(int startLevel)
-        {
-            level = startLevel;
-        }
+        public event Action onUpExperience;
 
         public int CalcLevel(int experience)
         {
@@ -24,6 +21,7 @@ namespace MMORPG.Stats
             experience += receiveExperience;
             level = CalcLevel(experience);
             if (level > currentLevel) LevelUp(level);
+            if (onUpExperience != null) onUpExperience();
         }
 
         public int GetLevel()

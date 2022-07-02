@@ -8,7 +8,6 @@ namespace MMORPG.Stats
     {
         [SerializeField] CharacterClass characterClass;
         [SerializeField] float[] health;
-        [SerializeField][Range(1, 100)] int startLevel = 1;
         [SerializeField] int[] experienceReward;
 
         public float GetHealth(int level)
@@ -34,11 +33,5 @@ namespace MMORPG.Stats
                 return 10 * level;
             }
         }
-
-        public int GetStartLevel()
-        {
-            return startLevel;
-        }
-
     }
 }

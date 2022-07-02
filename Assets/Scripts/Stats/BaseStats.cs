@@ -15,7 +15,6 @@ namespace MMORPG.Stats
             progression = Resources.Load<Progression>
                 ("Progression/" + System.Enum.GetName(typeof(CharacterClass), characterClass));
             levelControl = GetComponent<LevelControl>();
-            levelControl.SetStartLevel(progression.GetStartLevel());
         }
 
         public float GetHealth()

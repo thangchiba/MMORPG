@@ -805,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440119, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_Name
-      value: SwordMan
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440119, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_TagString
@@ -820,12 +820,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.7
+      value: 36.70008
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -914,6 +922,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
+--- !u!114 &5186943854636867367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655679483468097342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c259122bb3784e3da0ff593ccd22c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 35
+  experience: 350
 --- !u!114 &-6950821418759260629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,5 +948,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460df7ce6fdeb4b9699211c1ed72c247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  characterClass: 0
+  characterClass: 3

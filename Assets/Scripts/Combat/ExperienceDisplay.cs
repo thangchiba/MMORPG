@@ -12,12 +12,13 @@ namespace MMORPG.Combat
         private void Awake()
         {
             levelControl = GameObject.FindGameObjectWithTag("Player").GetComponent<LevelControl>();
+            UpdateExperience();
+            levelControl.onUpExperience += UpdateExperience;
         }
 
-        private void Update()
+        private void UpdateExperience()
         {
             GetComponent<TextMeshProUGUI>().text = String.Format("{0}",levelControl.GetExperience());
-
         }
     }
 
