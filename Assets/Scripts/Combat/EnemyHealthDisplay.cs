@@ -16,7 +16,7 @@ namespace MMORPG.Combat
         private void Update()
         {
             if(fight.CombatTarget==null)
-                GetComponent<TextMeshProUGUI>().text = "No Enemy";
+                GetComponent<TextMeshProUGUI>().text = "NaN";
             else
                 GetComponent<TextMeshProUGUI>().text =
                     String.Format("{0:0}%", fight.CombatTarget.GetComponent<Health>().GetHealthPercent());

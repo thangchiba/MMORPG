@@ -54,7 +54,7 @@ namespace MMORPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    mover.StartMoveAction(hits[hits.Length - 1].point);
+                    mover.StartMoveAction(hits[0].point);
                 }
                 return true;
             }
