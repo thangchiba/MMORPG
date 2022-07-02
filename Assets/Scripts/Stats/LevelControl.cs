@@ -8,8 +8,16 @@ namespace MMORPG.Stats
     {
         [SerializeField] int level = 1;
         [SerializeField] int experience = 0;
+        [SerializeField] GameObject levelUpEffect;
+
+        private void Start()
+        {
+            levelUpEffect = Resources.Load<GameObject>("Effects/LevelUp");
+        }
 
         public event Action onUpExperience;
+
+        public event Action onUpLevel;
 
         public int CalcLevel(int experience)
         {
@@ -31,6 +39,8 @@ namespace MMORPG.Stats
         private void LevelUp(int level)
         {
             Debug.Log("Up level to " + level);
+            Instantiate(levelUpEffect, transform);
+            if (onUpLevel != null) onUpLevel();
         }
 
         public int GetExperience()

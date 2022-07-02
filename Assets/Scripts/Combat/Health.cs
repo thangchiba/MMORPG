@@ -8,11 +8,14 @@ namespace MMORPG.Combat
         [SerializeField] float health = 100f;
         Animator animator;
         CombatTarget combatTarget;
+        LevelControl levelControl;
         private void Start()
         {
             animator = gameObject.GetComponentInChildren<Animator>();
             combatTarget = GetComponent<CombatTarget>();
             health = GetComponent<BaseStats>().GetHealth();
+            levelControl = GetComponent<LevelControl>();
+            levelControl.onUpLevel += OnUpLevel;
         }
 
         public float TakeDamage(Fight instigator,float damage)
@@ -33,6 +36,11 @@ namespace MMORPG.Combat
             int experienceReward = gameObject.GetComponent<BaseStats>().GetExperienceReward();
             instigator.GetComponent<LevelControl>().UpExperience(experienceReward);
             animator.SetTrigger("death");
+        }
+
+        void OnUpLevel()
+        {
+            health = GetComponent<BaseStats>().GetHealth();
         }
 
         public float GetHealthPercent()
