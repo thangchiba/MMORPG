@@ -10,7 +10,7 @@ namespace MMORPG.Stats
         [SerializeField] CharacterClass characterClass;
         Progression progression;
         LevelControl levelControl;
-        private void Start()
+        private void Awake()
         {
             progression = Resources.Load<Progression>
                 ("Progression/" + System.Enum.GetName(typeof(CharacterClass), characterClass));

@@ -8,12 +8,14 @@ namespace MMORPG.Combat
     {
         Health health;
 
-        private void Awake()
+        private void Start()
         {
             health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+            UpdateHealth();
+            health.onTakeDamage += UpdateHealth;
         }
 
-        private void Update()
+        private void UpdateHealth()
         {
             GetComponent<TextMeshProUGUI>().text = String.Format("{0:0}%",health.GetHealthPercent());
 

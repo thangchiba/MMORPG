@@ -8,14 +8,14 @@ namespace MMORPG.Combat
     {
         Fight fight;
 
-        private void Awake()
+        private void Start()
         {
             fight = GameObject.FindGameObjectWithTag("Player").GetComponent<Fight>();
         }
 
         private void Update()
         {
-            if(fight.CombatTarget==null)
+            if (fight.CombatTarget == null)
                 GetComponent<TextMeshProUGUI>().text = "NaN";
             else
                 GetComponent<TextMeshProUGUI>().text =
