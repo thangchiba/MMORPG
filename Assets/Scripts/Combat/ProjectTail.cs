@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MMORPG.Stats;
 using UnityEngine;
 
 namespace MMORPG.Combat
@@ -44,8 +45,9 @@ namespace MMORPG.Combat
 
         private void OnTriggerEnter(Collider other)
         {
+            float damage = fight.GetComponent<BaseStats>().GetAttackDamage();
             if (other.GetComponent<Fight>() == fight) return;
-            other.GetComponent<Health>().TakeDamage(fight,fight.AttackDamage);
+            other.GetComponent<Health>().TakeDamage(fight,damage);
             Destroy(gameObject);
             if (BoomEffect != null)
             {

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   characterClass: 0
-  health:
-  - 100
-  - 200
-  - 300
+  health: 230
+  experienceReward: 10
+  attackDamage: 10
+  attackSpeed: 3
+  attackRange: 1

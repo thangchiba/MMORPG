@@ -2,14 +2,12 @@ using UnityEngine;
 using MMORPG.Movement;
 using MMORPG.Core;
 using System;
+using MMORPG.Stats;
 
 namespace MMORPG.Combat
 {
     public class Fight : MonoBehaviour, IAction
     {
-        [SerializeField] float attackRange = 1f;
-        [SerializeField][Range(15, 150)] float attackSpeed = 15f;
-        [SerializeField] float attackDamage = 5f;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] String defaultWeaponName = "Unarmed";
@@ -18,16 +16,15 @@ namespace MMORPG.Combat
         Mover mover;
         ActionScheduler actionScheduler;
         Weapon currentWeapon = null;
-        public Weapon CurrentWeapon { get => currentWeapon;}
+        public Weapon CurrentWeapon { get => currentWeapon; }
         public CombatTarget CombatTarget { get => combatTarget; set => combatTarget = value; }
-        public float AttackDamage { get => attackDamage; set => attackDamage = value; }
 
         void Awake()
         {
             animator = GetComponentInChildren<Animator>();
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
-            var weapon = Resources.Load<Weapon>("Weapons/"+defaultWeaponName);
+            var weapon = Resources.Load<Weapon>("Weapons/" + defaultWeaponName);
             EquipWeapon(weapon);
         }
         private void Update()
@@ -51,10 +48,10 @@ namespace MMORPG.Combat
             if (weapon == null) return;
             DestroyOldWeapon();
             currentWeapon = weapon;
-            weapon.Spawn(leftHandTransform,rightHandTransform, animator);
-            attackRange += weapon.AttackRange;
-            attackSpeed += weapon.AttackSpeed;
-            attackDamage += weapon.AttackDamage;
+            weapon.Spawn(leftHandTransform, rightHandTransform, animator);
+            //attackRange += weapon.AttackRange;
+            //attackSpeed += weapon.AttackSpeed;
+            //attackDamage += weapon.AttackDamage;
         }
 
         private void DestroyOldWeapon()
@@ -71,6 +68,7 @@ namespace MMORPG.Combat
 
         private bool GetIsInRange()
         {
+            float attackRange = GetComponent<BaseStats>().GetAttackRange();
             return Vector3.Distance(transform.position, combatTarget.transform.position) < attackRange;
         }
 
@@ -82,6 +80,7 @@ namespace MMORPG.Combat
 
         private void AttackBehaviour()
         {
+            float attackSpeed = GetComponent<BaseStats>().GetAttackSpeed();
             gameObject.transform.LookAt(combatTarget.transform);
             animator.SetTrigger("attack");
             animator.SetFloat("attackSpeed", attackSpeed / 100);
@@ -89,13 +88,13 @@ namespace MMORPG.Combat
 
         public void Damage()
         {
-            float remainingHealth = combatTarget.GetComponent<Health>().TakeDamage(this,attackDamage);
-            Debug.Log(remainingHealth);
+            float damage = GetComponent<BaseStats>().GetAttackDamage();
+            combatTarget.GetComponent<Health>().TakeDamage(this, damage);
         }
 
         public void Shot()
         {
-            currentWeapon.SpawnProjectTail(this,leftHandTransform,rightHandTransform);
+            currentWeapon.SpawnProjectTail(this, leftHandTransform, rightHandTransform);
         }
 
         public void Cancel()

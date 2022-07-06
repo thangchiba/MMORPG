@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   characterClass: 2
-  health:
-  - 60
-  - 110
-  - 160
-  experienceReward: 
+  health: 100
+  experienceReward: 10
+  attackDamage: 30
+  attackSpeed: 5
+  attackRange: 5
