@@ -18,29 +18,8 @@ namespace MMORPG.Stats
             levelControl = GetComponent<LevelControl>();
         }
 
-        public float GetHealth()
-        {
-            return progression.GetStat(Stat.Health,levelControl.GetLevel());
-        }
-
-        public int GetExperienceReward()
-        {
-            return (int)progression.GetStat(Stat.ExperienceReward, levelControl.GetLevel());
-        }
-
-        public float GetAttackDamage()
-        {
-            return progression.GetStat(Stat.AttackDamage, levelControl.GetLevel());
-        }
-
-        public float GetAttackSpeed()
-        {
-            return progression.GetStat(Stat.AttackSpeed, levelControl.GetLevel());
-        }
-
-        public float GetAttackRange()
-        {
-            return progression.GetStat(Stat.AttackRange, levelControl.GetLevel());
+        public float GetStat(Stat stat) {
+            return progression.GetStat(stat, levelControl.GetLevel());
         }
     }
 

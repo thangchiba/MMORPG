@@ -28,7 +28,6 @@ namespace MMORPG.Stats
             progress[Stat.AttackDamage] = CalcData(attackDamage);
             progress[Stat.AttackSpeed] = CalcData(attackSpeed);
             progress[Stat.AttackRange] = CalcData(attackRange);
-            Debug.Log(progress[Stat.AttackSpeed][150]);
         }
 
         float[] CalcData(float baseValue)

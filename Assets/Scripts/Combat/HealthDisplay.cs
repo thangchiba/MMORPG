@@ -12,7 +12,7 @@ namespace MMORPG.Combat
         {
             health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
             UpdateHealth();
-            health.onTakeDamage += UpdateHealth;
+            health.onUpdateHealth += UpdateHealth;
         }
 
         private void UpdateHealth()

@@ -68,7 +68,7 @@ namespace MMORPG.Combat
 
         private bool GetIsInRange()
         {
-            float attackRange = GetComponent<BaseStats>().GetAttackRange();
+            float attackRange = GetComponent<BaseStats>().GetStat(Stat.AttackRange);
             return Vector3.Distance(transform.position, combatTarget.transform.position) < attackRange;
         }
 
@@ -80,7 +80,7 @@ namespace MMORPG.Combat
 
         private void AttackBehaviour()
         {
-            float attackSpeed = GetComponent<BaseStats>().GetAttackSpeed();
+            float attackSpeed = GetComponent<BaseStats>().GetStat(Stat.AttackSpeed);
             gameObject.transform.LookAt(combatTarget.transform);
             animator.SetTrigger("attack");
             animator.SetFloat("attackSpeed", attackSpeed / 100);
@@ -88,7 +88,7 @@ namespace MMORPG.Combat
 
         public void Damage()
         {
-            float damage = GetComponent<BaseStats>().GetAttackDamage();
+            float damage = GetComponent<BaseStats>().GetStat(Stat.AttackDamage);
             combatTarget.GetComponent<Health>().TakeDamage(this, damage);
         }
 

@@ -14,22 +14,28 @@ namespace MMORPG.Combat
         {
             animator = gameObject.GetComponentInChildren<Animator>();
             combatTarget = GetComponent<CombatTarget>();
-            health = GetComponent<BaseStats>().GetHealth();
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);
             levelControl = GetComponent<LevelControl>();
             levelControl.onUpLevel += OnUpLevel;
         }
 
-        public Action onTakeDamage;
+        public Action onUpdateHealth;
+        void UpdateHealth(float newHealth)
+        {
+            health = newHealth;
+            if (onUpdateHealth != null) onUpdateHealth();
+        }
+
 
         public float TakeDamage(Fight instigator, float damage)
         {
-            health = Mathf.Max(health - damage, 0);
+            UpdateHealth(Mathf.Max(health - damage, 0));
             //Debug.Log("HP : " + health);
             if (health == 0)
             {
                 Death(instigator);
             }
-            if (onTakeDamage != null) onTakeDamage();
+            if (onUpdateHealth != null) onUpdateHealth();
             return health;
         }
 
@@ -37,19 +43,19 @@ namespace MMORPG.Combat
         {
             combatTarget.Death();
             Debug.Log(gameObject.name + " Be Killed By " + instigator.gameObject.name);
-            int experienceReward = gameObject.GetComponent<BaseStats>().GetExperienceReward();
+            int experienceReward = (int)gameObject.GetComponent<BaseStats>().GetStat(Stat.ExperienceReward);
             instigator.GetComponent<LevelControl>().UpExperience(experienceReward);
             animator.SetTrigger("death");
         }
 
         void OnUpLevel()
         {
-            health = GetComponent<BaseStats>().GetHealth();
+            UpdateHealth(GetComponent<BaseStats>().GetStat(Stat.Health));
         }
 
         public float GetHealthPercent()
         {
-            return (health / GetComponent<BaseStats>().GetHealth()) * 100;
+            return (health / GetComponent<BaseStats>().GetStat(Stat.Health)) * 100;
         }
     }
 }
