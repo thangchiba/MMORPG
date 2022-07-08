@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396adb3d817fc4e539d221c9450e7906, type: 3}
   m_Name: Unarmed
   m_EditorClassIdentifier: 
-  animatorOverride: {fileID: 0}
   weaponPrefab: {fileID: 0}
+  hand: 0
+  animatorOverride: {fileID: 0}
+  attackDamage: 0
   attackRange: 1
-  attackSpeed: 20
-  attackDamage: 10
+  attackSpeed: 5
+  buffDamagePercent: 50
+  projectTailPrefab: {fileID: 0}
+  projectTailSpeed: 10
+  projectTailIsHoming: 0

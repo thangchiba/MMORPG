@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396adb3d817fc4e539d221c9450e7906, type: 3}
   m_Name: Saber
   m_EditorClassIdentifier: 
-  animatorOverride: {fileID: 22100000, guid: 29b998ee41547490088f5eae164001ba, type: 2}
   weaponPrefab: {fileID: 8610216888738674792, guid: 162ea3cf0f57040bab045be551f47d8d, type: 3}
+  hand: 0
+  animatorOverride: {fileID: 22100000, guid: 29b998ee41547490088f5eae164001ba, type: 2}
+  attackDamage: 50
   attackRange: 1
   attackSpeed: 5
-  attackDamage: 10
+  buffDamagePercent: 50
+  projectTailPrefab: {fileID: 0}
+  projectTailSpeed: 10
+  projectTailIsHoming: 0

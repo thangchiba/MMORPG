@@ -15,9 +15,10 @@ MonoBehaviour:
   weaponPrefab: {fileID: 5711611989446461081, guid: 7771b01a86a6a4dc987e6f9222987121, type: 3}
   hand: 0
   animatorOverride: {fileID: 22100000, guid: 48e5a3c6a97524b1ebe143badb02e047, type: 2}
-  attackDamage: 5
-  attackRange: 15
+  attackDamage: 50
+  attackRange: 30
   attackSpeed: 5
+  buffDamagePercent: 100
   projectTailPrefab: {fileID: 100002, guid: 41dacc8203d4d46748ede773c6848e9e, type: 3}
-  projectTailSpeed: 5
+  projectTailSpeed: 7
   projectTailIsHoming: 1
