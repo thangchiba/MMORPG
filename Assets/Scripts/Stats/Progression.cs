@@ -35,7 +35,7 @@ namespace MMORPG.Stats
             float[] result = new float[200];
             for (int i = 0; i < 200; i++)
             {
-                result[i] = baseValue + (i * (baseValue / 20));
+                result[i] = baseValue + (i * (baseValue / 30));
             }
             return result;
         }

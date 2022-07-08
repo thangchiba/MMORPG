@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using System.Linq;
 
 namespace MMORPG.Stats
 {
@@ -18,9 +18,28 @@ namespace MMORPG.Stats
             levelControl = GetComponent<LevelControl>();
         }
 
-        public float GetStat(Stat stat) {
-            return progression.GetStat(stat, levelControl.GetLevel());
+        public float GetStat(Stat stat)
+        {
+            return progression.GetStat(stat, levelControl.GetLevel()) + CalcModify(stat);
         }
+
+
+        public float CalcModify(Stat stat)
+        {
+            float result = 0;
+            foreach (IModifyStat modifies in GetComponents<IModifyStat>())
+            {
+                foreach (float value in modifies.AddStraight(stat))
+                {
+                    result += value;
+                }
+            }
+            if(gameObject.tag=="Player" && stat == Stat.AttackDamage)
+            Debug.Log("Vao tinh toan" + result);
+            return result;
+
+        }
+
     }
 
 }

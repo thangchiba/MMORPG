@@ -3,14 +3,16 @@ using MMORPG.Movement;
 using MMORPG.Core;
 using System;
 using MMORPG.Stats;
+using System.Collections.Generic;
 
 namespace MMORPG.Combat
 {
-    public class Fight : MonoBehaviour, IAction
+    public class Fight : MonoBehaviour, IAction, IModifyStat
     {
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] String defaultWeaponName = "Unarmed";
+        [SerializeField] float damage = 0f;
         Animator animator;
         CombatTarget combatTarget;
         Mover mover;
@@ -26,6 +28,7 @@ namespace MMORPG.Combat
             actionScheduler = GetComponent<ActionScheduler>();
             var weapon = Resources.Load<Weapon>("Weapons/" + defaultWeaponName);
             EquipWeapon(weapon);
+            damage = GetComponent<BaseStats>().GetStat(Stat.AttackDamage);
         }
         private void Update()
         {
@@ -49,9 +52,6 @@ namespace MMORPG.Combat
             DestroyOldWeapon();
             currentWeapon = weapon;
             weapon.Spawn(leftHandTransform, rightHandTransform, animator);
-            //attackRange += weapon.AttackRange;
-            //attackSpeed += weapon.AttackSpeed;
-            //attackDamage += weapon.AttackDamage;
         }
 
         private void DestroyOldWeapon()
@@ -108,6 +108,19 @@ namespace MMORPG.Combat
         {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
+        }
+
+        public IEnumerable<float> AddStraight(Stat stat)
+        {
+            if (stat == Stat.AttackDamage) yield return currentWeapon.AttackDamage;
+            if (stat == Stat.AttackRange) yield return currentWeapon.AttackRange;
+            if (stat == Stat.AttackSpeed) yield return currentWeapon.AttackSpeed;
+        }
+
+        public IEnumerable<float> AddPercent(Stat stat)
+        {
+            if (stat == Stat.AttackDamage)
+                yield return 1000f;
         }
     }
 }
