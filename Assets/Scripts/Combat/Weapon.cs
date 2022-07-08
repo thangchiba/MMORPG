@@ -1,4 +1,5 @@
 ﻿using System;
+using MMORPG.Stats;
 using UnityEngine;
 
 namespace MMORPG.Combat
@@ -12,9 +13,11 @@ namespace MMORPG.Combat
         [SerializeField] float attackDamage = 10f;
         [SerializeField] float attackRange = 1f;
         [SerializeField][Range(5, 150)] float attackSpeed = 20f;
+        [SerializeField][Range(0, 100)] float buffDamagePercent = 0f;
         public float AttackRange { get => attackRange; }
         public float AttackSpeed { get => attackSpeed; }
         public float AttackDamage { get => attackDamage; }
+        public float BuffDamagePercent { get => buffDamagePercent; }
         [SerializeField] GameObject projectTailPrefab = null;
         [SerializeField] float projectTailSpeed = 10;
         [SerializeField] bool projectTailIsHoming = false;
@@ -47,5 +50,11 @@ namespace MMORPG.Combat
     {
         Right,
         Left,
+    }
+
+    class WeaponProgress
+    {
+        public Stat stat;
+        public float value;
     }
 }

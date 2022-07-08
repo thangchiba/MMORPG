@@ -20,11 +20,12 @@ namespace MMORPG.Stats
 
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(stat, levelControl.GetLevel()) + CalcModify(stat);
+            return (progression.GetStat(stat, levelControl.GetLevel()) + AddStraight(stat))
+                * (1 + AddPercent(stat) / 100);
         }
 
 
-        public float CalcModify(Stat stat)
+        public float AddStraight(Stat stat)
         {
             float result = 0;
             foreach (IModifyStat modifies in GetComponents<IModifyStat>())
@@ -34,10 +35,26 @@ namespace MMORPG.Stats
                     result += value;
                 }
             }
-            if(gameObject.tag=="Player" && stat == Stat.AttackDamage)
-            Debug.Log("Vao tinh toan" + result);
+            if (gameObject.tag == "Player" && stat == Stat.AttackDamage)
+                Debug.Log("Vao tinh toan" + result);
             return result;
+        }
 
+
+
+        public float AddPercent(Stat stat)
+        {
+            float result = 0;
+            foreach (IModifyStat modifies in GetComponents<IModifyStat>())
+            {
+                foreach (float value in modifies.AddPercent(stat))
+                {
+                    result += value;
+                }
+            }
+            if (gameObject.tag == "Player" && stat == Stat.AttackDamage)
+                Debug.Log("Vao tinh toan" + result);
+            return result;
         }
 
     }

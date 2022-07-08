@@ -35,7 +35,8 @@ namespace MMORPG.Stats
             float[] result = new float[200];
             for (int i = 0; i < 200; i++)
             {
-                result[i] = baseValue + (i * (baseValue / 30));
+                double calcValue = baseValue + (i * (baseValue / 30));
+                result[i] = (float)Math.Round(calcValue, MidpointRounding.ToEven);
             }
             return result;
         }

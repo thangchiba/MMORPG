@@ -119,8 +119,7 @@ namespace MMORPG.Combat
 
         public IEnumerable<float> AddPercent(Stat stat)
         {
-            if (stat == Stat.AttackDamage)
-                yield return 1000f;
+            if (stat == Stat.AttackDamage) yield return currentWeapon.BuffDamagePercent;
         }
     }
 }

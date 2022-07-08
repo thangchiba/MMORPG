@@ -30,8 +30,8 @@ namespace MMORPG.Combat
         public float TakeDamage(Fight instigator, float damage)
         {
             UpdateHealth(Mathf.Max(health - damage, 0));
-            //Debug.Log("HP : " + health);
-            if (health == 0)
+            if(gameObject.tag=="Minion")Debug.Log(gameObject.name + "Take Damage : " + damage);
+            if (health <= 0)
             {
                 Death(instigator);
             }
