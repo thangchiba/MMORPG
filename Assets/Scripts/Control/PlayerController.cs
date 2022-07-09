@@ -16,9 +16,6 @@ namespace MMORPG.Control
         private void Awake()
         {
             Application.targetFrameRate = 60;
-        }
-        private void Start()
-        {
             mover = GetComponent<Mover>();
             fight = GetComponent<Fight>();
         }

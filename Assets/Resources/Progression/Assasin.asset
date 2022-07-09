@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assasin
   m_EditorClassIdentifier: 
   characterClass: 3
-  health: 550
+  health: 200
   experienceReward: 10
   attackDamage: 25
   attackSpeed: 10

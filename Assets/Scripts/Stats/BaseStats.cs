@@ -39,8 +39,6 @@ namespace MMORPG.Stats
                     result += value;
                 }
             }
-            if (gameObject.tag == "Player" && stat == Stat.AttackDamage)
-                Debug.Log("Vao tinh toan" + result);
             return result;
         }
 
@@ -56,8 +54,6 @@ namespace MMORPG.Stats
                     result += value;
                 }
             }
-            if (gameObject.tag == "Player" && stat == Stat.AttackDamage)
-                Debug.Log("Vao tinh toan" + result);
             return result;
         }
 

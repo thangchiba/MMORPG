@@ -37,7 +37,6 @@ namespace MMORPG.Stats
         }
         private void LevelUp(int level)
         {
-            Debug.Log("Up level to " + level);
             Instantiate(levelUpEffect, transform);
             if (onUpLevel != null) onUpLevel();
         }

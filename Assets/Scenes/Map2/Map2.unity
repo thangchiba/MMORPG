@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 2484997503838894067, guid: 554489519312f470a9fee737ac2cf944, type: 3}
       propertyPath: patrolPath
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 758033291}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 554489519312f470a9fee737ac2cf944, type: 3}
 --- !u!1 &404027380
@@ -820,7 +820,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678870772}
-  m_LocalRotation: {x: 0.07524903, y: 0.33962655, z: -0.02727055, w: 0.93714875}
+  m_LocalRotation: {x: 0.07524899, y: 0.33962655, z: -0.02727054, w: 0.93714875}
   m_LocalPosition: {x: -17.1, y: 6.61, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

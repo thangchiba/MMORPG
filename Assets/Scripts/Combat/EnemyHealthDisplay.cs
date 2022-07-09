@@ -8,7 +8,7 @@ namespace MMORPG.Combat
     {
         Fight fight;
 
-        private void Start()
+        private void Awake()
         {
             fight = GameObject.FindGameObjectWithTag("Player").GetComponent<Fight>();
         }
