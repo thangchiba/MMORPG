@@ -7,7 +7,7 @@ public class PersistentObject : MonoBehaviour
 {
     [SerializeField] GameObject persistentObject;
     static bool hasSpawn = false;
-    private void Awake()
+    private void Start()
     {
         if (hasSpawn) return;
         SpawnPersistentObject();

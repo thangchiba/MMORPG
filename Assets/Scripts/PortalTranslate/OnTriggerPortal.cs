@@ -15,7 +15,7 @@ namespace MMORPG.PortalTranslate
     {
         [SerializeField] ListScene loadScene;
         TranslateFading fader;
-        private void Start()
+        private void Awake()
         {
             //fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<TranslateFading>();
         }

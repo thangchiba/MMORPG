@@ -9,7 +9,7 @@ namespace MMORPG.Combat
     {
         Fight fight;
         Animator animator;
-        private void Start()
+        private void Awake()
         {
             fight = GetComponentInParent<Fight>();
             animator = GetComponent<Animator>();

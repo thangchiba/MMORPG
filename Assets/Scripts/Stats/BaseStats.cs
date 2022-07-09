@@ -12,10 +12,14 @@ namespace MMORPG.Stats
         LevelControl levelControl;
         private void Awake()
         {
+            levelControl = GetComponent<LevelControl>();
             progression = Resources.Load<Progression>
                 ("Progression/" + System.Enum.GetName(typeof(CharacterClass), characterClass));
             progression.BuildProgress();
-            levelControl = GetComponent<LevelControl>();
+        }
+
+        private void Start()
+        {
         }
 
         public float GetStat(Stat stat)

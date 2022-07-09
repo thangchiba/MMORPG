@@ -14,7 +14,7 @@ namespace MMORPG.PortalTranslate
     {
         [SerializeField] float timeFade;
         CanvasGroup canvasGroup;
-        private void Start()
+        private void Awake()
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }

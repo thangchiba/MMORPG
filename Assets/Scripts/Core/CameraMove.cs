@@ -9,7 +9,7 @@ namespace MMORPG.Core
     public class CameraMove : MonoBehaviour
     {
         GameObject player;
-        private void Start()
+        private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }

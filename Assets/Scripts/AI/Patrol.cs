@@ -16,7 +16,7 @@ namespace MMORPG.Combat
         CombatTarget combatTarget;
         bool patrolStatus = false;
         int patrolCurrentIndex = 0;
-        void Start()
+        void Awake()
         {
             actionScheduler = GetComponent<ActionScheduler>();
             mover = GetComponent<Mover>();
@@ -32,8 +32,7 @@ namespace MMORPG.Combat
         IEnumerator PatrolBehaviour()
         {
             patrolStatus = true;
-            bool isDied = combatTarget.isDead;
-            while (!isDied)
+            while (!combatTarget.isDead)
             {
                 //Patrolling position will loop 0-...
                 int nextPointIndex = patrolCurrentIndex % patrolPath.transform.childCount;
@@ -48,7 +47,8 @@ namespace MMORPG.Combat
         public void Cancel()
         {
             patrolStatus = false;
-            StopCoroutine("PatrolBehaviour");
+            StopCoroutine(PatrolBehaviour());
+            mover.Cancel();
         }
 
         private void OnDrawGizmos()

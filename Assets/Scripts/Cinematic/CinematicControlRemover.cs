@@ -11,11 +11,15 @@ namespace MMORPG.Cinematic
     public class CinematicControlRemover : MonoBehaviour
     {
         GameObject player;
+        private void Awake()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
         void Start()
         {
             GetComponent<PlayableDirector>().played += OnStartIntro;
             GetComponent<PlayableDirector>().stopped += OnFinishIntro;
-            player = GameObject.FindGameObjectWithTag("Player");
         }
 
         void OnStartIntro(PlayableDirector playableDirector)

@@ -12,6 +12,10 @@ namespace MMORPG.Combat
         private void Awake()
         {
             levelControl = GameObject.FindGameObjectWithTag("Player").GetComponent<LevelControl>();
+        }
+
+        private void Start()
+        {
             UpdateLevel();
             levelControl.onUpExperience += UpdateLevel;
         }

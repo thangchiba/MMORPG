@@ -10,12 +10,17 @@ namespace MMORPG.Combat
         Animator animator;
         CombatTarget combatTarget;
         LevelControl levelControl;
-        private void Start()
+
+        private void Awake()
         {
             animator = gameObject.GetComponentInChildren<Animator>();
             combatTarget = GetComponent<CombatTarget>();
-            health = GetComponent<BaseStats>().GetStat(Stat.Health);
             levelControl = GetComponent<LevelControl>();
+        }
+
+        private void Start()
+        {
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);
             levelControl.onUpLevel += OnUpLevel;
         }
 

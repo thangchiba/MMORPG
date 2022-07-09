@@ -12,7 +12,7 @@ namespace MMORPG.Movement
     {
         NavMeshAgent navMeshAgent;
         Animator animator;
-        private void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponentInChildren<Animator>();

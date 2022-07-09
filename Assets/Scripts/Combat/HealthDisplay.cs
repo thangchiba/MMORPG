@@ -8,9 +8,13 @@ namespace MMORPG.Combat
     {
         Health health;
 
-        private void Start()
+        private void Awake()
         {
             health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        }
+
+        private void Start()
+        {
             UpdateHealth();
             health.onUpdateHealth += UpdateHealth;
         }

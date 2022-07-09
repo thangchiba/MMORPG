@@ -15,11 +15,10 @@ namespace MMORPG.Combat
         CombatTarget player;
         Fight fight;
         Patrol patrol;
-        private void Start()
+        private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<CombatTarget>();
             fight = GetComponent<Fight>();
-            //fight.CombatTarget = player;
             patrol = GetComponentInParent<Patrol>();
         }
         private void Update()
