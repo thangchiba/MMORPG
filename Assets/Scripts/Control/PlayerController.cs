@@ -24,16 +24,8 @@ namespace MMORPG.Control
         {
             if (disableControl) return;
             if (InteractWithUI()) return;
-            if (InteractWithCombat()) return;
+            if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
-        }
-
-        enum CursorType
-        {
-            None,
-            Movement,
-            Combat,
-            Pickup
         }
 
         [Serializable]
@@ -62,6 +54,7 @@ namespace MMORPG.Control
 
         private bool InteractWithUI()
         {
+            //Point over is top of object(UI)
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 SetCursor(CursorType.None);
@@ -70,20 +63,21 @@ namespace MMORPG.Control
             else return false;
         }
 
-        private bool InteractWithCombat()
+        private bool InteractWithComponent()
         {
             //Get all object hitted on straight line 
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null || target.tag == "Player") continue;
-                SetCursor(CursorType.Combat);
-                if (Input.GetMouseButtonDown(0))
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach(IRaycastable raycast in raycastables)
                 {
-                    fight.Attack(target);
+                    if (raycast.HandleRaycast())
+                    {
+                        SetCursor(raycast.GetCursorType());
+                        return true;
+                    };
                 }
-                return true;
             }
             return false;
         }

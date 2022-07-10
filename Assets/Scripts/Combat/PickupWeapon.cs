@@ -1,22 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MMORPG.Control;
 using UnityEngine;
 
 namespace MMORPG.Combat
 {
-    public class PickupWeapon : MonoBehaviour
+    public class PickupWeapon : MonoBehaviour, IRaycastable
     {
         [SerializeField] string weaponName;
-        [SerializeField] float respawnTime=3f;
+        [SerializeField] float respawnTime = 3f;
+        Fight player;
+
+        void Awake()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Fight>();
+        }
+
+        bool triggering = false;
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player")
             {
-                var weapon = Resources.Load<Weapon>("Weapons/"+weaponName);
-                other.gameObject.GetComponent<Fight>().EquipWeapon(weapon);
-                //Destroy(gameObject);
-                StartCoroutine(HideForSeconds(respawnTime));
+                triggering = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                triggering = false;
             }
         }
 
@@ -34,6 +48,23 @@ namespace MMORPG.Combat
             {
                 child.gameObject.SetActive(shouldShow);
             }
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Pickup;
+        }
+
+        public bool HandleRaycast()
+        {
+            if (!triggering) return false;
+            if (Input.GetMouseButton(0))
+            {
+                var weapon = Resources.Load<Weapon>("Weapons/" + weaponName);
+                player.EquipWeapon(weapon);
+                StartCoroutine(HideForSeconds(respawnTime));
+            }
+            return true;
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - PatrolPoint
   - Fader
   - Spawn
+  - Pickup
   layers:
   - Default
   - TransparentFX
