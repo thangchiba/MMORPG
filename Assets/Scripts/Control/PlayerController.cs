@@ -84,13 +84,15 @@ namespace MMORPG.Control
 
         private bool InteractWithMovement()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
-            if (hits.Length != 0)
+            //RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit hit;
+            bool hasHit = Physics.Raycast(GetMouseRay(),out hit);
+            if (hasHit)
             {
                 SetCursor(CursorType.Movement);
                 if (Input.GetMouseButton(0))
                 {
-                    mover.StartMoveAction(hits[0].point);
+                    mover.StartMoveAction(hit.point);
                 }
                 return true;
             }
