@@ -135,6 +135,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  takeDamageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4635633864983775089, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
+        m_TargetAssemblyTypeName: DamageTextContainer, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &8309069919544000035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,14 +157,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8816310732493440123}
     m_Modifications:
-    - target: {fileID: 2595240105509156701, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2595240105509156701, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 3073770030020399887, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -194,17 +201,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4064952262187675872, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6325554885767966935, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
       propertyPath: m_Name
-      value: DamageText
-      objectReference: {fileID: 0}
-    - target: {fileID: 7776610044499366173, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 7776610044499366173, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
+      value: DamageTextContainer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f75d7ab26f8f459b85d7f5af5f9e593, type: 3}

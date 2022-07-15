@@ -1,6 +1,7 @@
 using System;
 using MMORPG.Stats;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MMORPG.Combat
 {
@@ -10,6 +11,7 @@ namespace MMORPG.Combat
         Animator animator;
         CombatTarget combatTarget;
         LevelControl levelControl;
+        [SerializeField] UnityEvent takeDamageEvent;
 
         private void Awake()
         {
@@ -34,6 +36,7 @@ namespace MMORPG.Combat
 
         public float TakeDamage(Fight instigator, float damage)
         {
+            takeDamageEvent.Invoke();
             UpdateHealth(Mathf.Max(health - damage, 0));
             if (health <= 0)
             {
