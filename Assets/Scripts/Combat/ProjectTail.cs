@@ -32,9 +32,8 @@ namespace MMORPG.Combat
 
         IEnumerator ArrowMoveToTarget()
         {
-            while (true)
+            while (!isHitted)
             {
-                if (isHitted) { transform.position = GetAimLocation(); } 
                 if (isHoming) transform.LookAt(GetAimLocation());
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 yield return null;
@@ -56,6 +55,8 @@ namespace MMORPG.Combat
             if (other.GetComponent<Fight>() == fight) return;
 
             isHitted = true;
+            transform.SetParent(other.transform); //Hold arrow on body when hitted
+            transform.position = GetAimLocation(); //Arrow on mid of body's height
             float damage = fight.GetComponent<BaseStats>().GetStat(Stat.AttackDamage);
             other.GetComponent<Health>().TakeDamage(fight, damage);
             if (destroyAfterHitted) { Destroy(gameObject); }
