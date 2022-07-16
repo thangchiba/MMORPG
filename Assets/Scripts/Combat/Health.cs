@@ -12,6 +12,7 @@ namespace MMORPG.Combat
         CombatTarget combatTarget;
         LevelControl levelControl;
         [SerializeField] UnityEvent<float> takeDamageEvent;
+        [SerializeField] UnityEvent onDie;
 
         private void Awake()
         {
@@ -55,6 +56,7 @@ namespace MMORPG.Combat
             instigator.GetComponent<LevelControl>().UpExperience(experienceReward);
             animator.SetTrigger("death");
             onDeath();
+            onDie.Invoke();
         }
 
         void OnUpLevel()
