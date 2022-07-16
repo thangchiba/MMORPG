@@ -46,6 +46,7 @@ namespace MMORPG.Combat
             return health;
         }
 
+        public Action onDeath;
         public void Death(Fight instigator)
         {
             combatTarget.Death();
@@ -53,6 +54,7 @@ namespace MMORPG.Combat
             int experienceReward = (int)gameObject.GetComponent<BaseStats>().GetStat(Stat.ExperienceReward);
             instigator.GetComponent<LevelControl>().UpExperience(experienceReward);
             animator.SetTrigger("death");
+            onDeath();
         }
 
         void OnUpLevel()
