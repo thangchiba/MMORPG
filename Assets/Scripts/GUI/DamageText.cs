@@ -3,9 +3,10 @@ using System.Collections;
 
 public class DamageText : MonoBehaviour
 {
-	public void SelfDestroy()
+    [SerializeField] GameObject destroyObject = null;
+    public void SelfDestroy()
     {
-        Destroy(gameObject);
+        Destroy(destroyObject);
     }
 }
 
