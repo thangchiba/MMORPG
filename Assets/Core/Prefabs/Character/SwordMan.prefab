@@ -803,9 +803,13 @@ PrefabInstance:
       propertyPath: health
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 3204116224483324879, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440119, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: SwordMan
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440119, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_TagString
@@ -829,15 +833,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.70008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000047683716
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 105.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816310732493440123, guid: eabf178af61084f2eaf9bdabdac2195e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -909,6 +913,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-6950821418759260629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655679483468097342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460df7ce6fdeb4b9699211c1ed72c247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterClass: 3
 --- !u!114 &1121412121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,16 +953,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 35
   experience: 350
---- !u!114 &-6950821418759260629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3655679483468097342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460df7ce6fdeb4b9699211c1ed72c247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterClass: 3
+  levelUpEffect: {fileID: 0}

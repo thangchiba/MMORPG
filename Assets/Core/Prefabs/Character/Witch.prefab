@@ -21,15 +21,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497171570246506671, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2497171570246506671, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2497171570246506671, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 88.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2497171570246506671, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: rightHandTransform
       value: 
       objectReference: {fileID: 7107459745283982117}
+    - target: {fileID: 8397279318306713371, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
 --- !u!1 &61854401383194995 stripped
@@ -106,19 +110,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3857591946443328319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61854401383194995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460df7ce6fdeb4b9699211c1ed72c247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterClass: 4
 --- !u!114 &409179422180054847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +124,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   experience: 10
+  levelUpEffect: {fileID: 0}
+--- !u!114 &3857591946443328319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61854401383194995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460df7ce6fdeb4b9699211c1ed72c247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterClass: 4
 --- !u!4 &61854401383195007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2497171570246506671, guid: a9292e49387fc4db883b12416a3fea97, type: 3}
