@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class DamageTextContainer : MonoBehaviour
 {
     [SerializeField] GameObject DamageText = null;
-	public void Spawn()
+    [SerializeField] TextMesh text;
+	public void Spawn(float damage)
     {
-        Instantiate(DamageText, gameObject.transform);
-        Debug.Log("Spawn");
+        GameObject instance = Instantiate(DamageText, gameObject.transform);
+        Debug.Log("take damage : "+damage);
+        instance.GetComponentInChildren<DamageText>().SetDamageText(damage);
     }
 }
 

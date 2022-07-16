@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class DamageText : MonoBehaviour
 {
@@ -7,6 +6,11 @@ public class DamageText : MonoBehaviour
     public void SelfDestroy()
     {
         Destroy(destroyObject);
+    }
+
+    public void SetDamageText(float damage)
+    {
+        GetComponentInChildren<TMPro.TextMeshProUGUI>().text = damage.ToString();
     }
 }
 

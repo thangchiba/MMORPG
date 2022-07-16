@@ -11,7 +11,7 @@ namespace MMORPG.Combat
         Animator animator;
         CombatTarget combatTarget;
         LevelControl levelControl;
-        [SerializeField] UnityEvent takeDamageEvent;
+        [SerializeField] UnityEvent<float> takeDamageEvent;
 
         private void Awake()
         {
@@ -36,7 +36,7 @@ namespace MMORPG.Combat
 
         public float TakeDamage(Fight instigator, float damage)
         {
-            takeDamageEvent.Invoke();
+            takeDamageEvent.Invoke(damage);
             UpdateHealth(Mathf.Max(health - damage, 0));
             if (health <= 0)
             {

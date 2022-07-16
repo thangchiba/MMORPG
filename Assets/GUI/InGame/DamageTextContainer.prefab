@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyObject: {fileID: 6325554885767966935}
+  damageText: {fileID: 4653784447225214976}
 --- !u!1 &6325554885767966935
 GameObject:
   m_ObjectHideFlags: 0
