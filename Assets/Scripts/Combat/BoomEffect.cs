@@ -12,6 +12,7 @@ namespace MMORPG.Combat
         public void Start()
         {
             onSpawn.Invoke();
+            Destroy(gameObject, 5f);
         }
     }
 }

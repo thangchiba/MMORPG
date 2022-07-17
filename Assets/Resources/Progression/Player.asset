@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   characterClass: 4
-  health: 700
+  health: 70000
   experienceReward: 100
   attackDamage: 50
   attackSpeed: 15

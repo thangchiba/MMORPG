@@ -180,23 +180,11 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8586855327553857019}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  BoomEffect: {fileID: 0}
+      m_Calls: []
+  BoomEffect: {fileID: 3431729459538377505, guid: e4c751f9dd54946248811e42ef6e79d9, type: 3}
   destroyAfterSeconds: 10
-  destroyAfterHitted: 0
-  holdOnBody: 1
+  destroyAfterHitted: 1
+  holdOnBody: 0
 --- !u!65 &3870117926643240902
 BoxCollider:
   m_ObjectHideFlags: 0
