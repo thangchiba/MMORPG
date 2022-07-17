@@ -194,8 +194,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   BoomEffect: {fileID: 0}
-  destroyAfterSeconds: 5
+  destroyAfterSeconds: 10
   destroyAfterHitted: 0
+  holdOnBody: 1
 --- !u!65 &3870117926643240902
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9439,6 +9439,7 @@ MonoBehaviour:
   BoomEffect: {fileID: 100004, guid: e22354a7916a74afc88cf80a8e3dc79b, type: 3}
   destroyAfterSeconds: 7
   destroyAfterHitted: 1
+  holdOnBody: 0
 --- !u!135 &9049254814444931968
 SphereCollider:
   m_ObjectHideFlags: 0

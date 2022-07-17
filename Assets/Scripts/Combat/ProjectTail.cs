@@ -13,6 +13,7 @@ namespace MMORPG.Combat
         [SerializeField] GameObject BoomEffect = null;
         [SerializeField] float destroyAfterSeconds = 5f;
         [SerializeField] bool destroyAfterHitted = true;
+        [SerializeField] bool holdOnBody = false;
         Fight fight = null;
         CombatTarget combatTarget = null;
         float speed;
@@ -55,16 +56,23 @@ namespace MMORPG.Combat
             if (other.GetComponent<Fight>() == fight) return;
 
             isHitted = true;
-            transform.SetParent(other.transform); //Hold arrow on body when hitted
-            transform.position = GetAimLocation(); //Arrow on mid of body's height
+            if (destroyAfterHitted) { Destroy(gameObject); }
+            if (holdOnBody) HoldOnBody(other);
             float damage = fight.GetComponent<BaseStats>().GetStat(Stat.AttackDamage);
             other.GetComponent<Health>().TakeDamage(fight, damage);
-            if (destroyAfterHitted) { Destroy(gameObject); }
             if (BoomEffect != null)
             {
                 Instantiate(BoomEffect, other.transform);
             }
             if (onHit != null) onHit.Invoke();
+        }
+
+        void HoldOnBody(Collider other)
+        {
+            StopCoroutine(ArrowMoveToTarget());
+            GetComponent<BoxCollider>().enabled = false;
+            transform.SetParent(other.transform); //Hold arrow on body when hitted
+            transform.position = GetAimLocation(); //Arrow on mid of body's height
         }
 
     }
