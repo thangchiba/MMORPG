@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4409876592811008943
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,6 @@ MonoBehaviour:
   BoomEffect: {fileID: 3431729459538377505, guid: e4c751f9dd54946248811e42ef6e79d9, type: 3}
   destroyAfterSeconds: 10
   destroyAfterHitted: 1
-  holdOnBody: 0
 --- !u!65 &3870117926643240902
 BoxCollider:
   m_ObjectHideFlags: 0
